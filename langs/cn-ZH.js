@@ -339,15 +339,15 @@ localeStrings.push("倒霉的沙漏");
 localeStrings.push("此物品重置你的英雄和对手部队的所有运气加值");//305
 localeStrings.push("玻璃地球仪");
 localeStrings.push("此物品可使您的英雄猜测下一场战斗的结果");//almost all times. 70% I guess, would be enough for start
-localeStrings.push("Brother-sergeant. Mounted melee unit. Hiring cost %arg1. Upkeep cost %arg2");
-localeStrings.push("Turkopol. Mounted ranged unit. Hiring cost %arg1. Upkeep cost %arg2");
-localeStrings.push("Brother-knight. Advanced mounted melee unit. Hiring cost %arg1. Upkeep cost %arg2");//310
-localeStrings.push("Castellan");
-localeStrings.push("Hero");
-localeStrings.push("Move the unit to the hero's squad");
-localeStrings.push("Move the unit to the garrison");
-localeStrings.push("You don't have any units to transfer in this direction");//315
-localeStrings.push("To do that, you need to build the stable");
+localeStrings.push("军士兄弟。近战单位。招聘成本 %arg1. 保养费用 %arg2");
+localeStrings.push("枪兵。远程单元。招聘成本 %arg1. 保养费用 %arg2");
+localeStrings.push("骑士兄弟。高级骑乘近战单位。招聘成本 %arg1. 保养费用 %arg2");//310
+localeStrings.push("城主");
+localeStrings.push("英雄");
+localeStrings.push("移动单位到英雄队伍");
+localeStrings.push("移动单位到驻军");
+localeStrings.push("您没有任何单位可以朝这个方向转移");//315
+localeStrings.push("要做到这一点，你需要建立马厩");
 localeStrings.push("To do that, you need to build the archery range");
 localeStrings.push("To do that, you need to upgrade the stable to %arg1 level");
 localeStrings.push("placeholder");
@@ -357,15 +357,15 @@ localeStrings.push("placeholder");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");//325
-localeStrings.push("There is no savestring in the field");
-localeStrings.push("Couldn't load the game from the savestring ;-;");
-localeStrings.push("Download game for playing off-grid (to play without Internet connection)");
+localeStrings.push("框里没有存档内容");
+localeStrings.push("无法从存档字符串加载游戏 ;-;");
+localeStrings.push("下载游戏离线玩(玩没有互联网连接)");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");//330
-localeStrings.push("Move troops to hero's squad");
-localeStrings.push("Move all forces to hero's squad");
-localeStrings.push("Move troops to garrison");
-localeStrings.push("Move all forces to garrison");
+localeStrings.push("将部队转移到英雄队伍");
+localeStrings.push("将所有部队转移到英雄队伍");
+localeStrings.push("调动部队驻守");
+localeStrings.push("将所有部队转移到驻军");
 localeStrings.push("You cannot afford upkeeping of %arg1 treasury guard(s). They are dismissed."); //335
 localeStrings.push("You cannot afford upkeeping of %arg1 sergeant(s). They are dismissed.");
 localeStrings.push("You cannot afford upkeeping of %arg1 turkopols(s). They are dismissed.");
@@ -377,19 +377,19 @@ localeStrings.push("Dismiss all turkopols from the garrison");
 localeStrings.push("Dismiss a knight from the garrison");
 localeStrings.push("Dismiss all knights from the garrison");
 localeStrings.push("Dismiss all forces from the garrison"); //345
-localeStrings.push("Dismiss a sergeant from the hero's squad");
-localeStrings.push("Dismiss all sergeants from the hero's squad");
-localeStrings.push("Dismiss a turkopol from the hero's squad");
-localeStrings.push("Dismiss all turkopols from the hero's squad");
-localeStrings.push("Dismiss a knight from the hero's squad");  //350
-localeStrings.push("Dismiss all knights from the hero's squad");
-localeStrings.push("Dismiss all forces from the hero's squad");
-localeStrings.push("You are going to dismiss a sergeant from the garrison. Are you sure?");
-localeStrings.push("You are going to dismiss a turkopol from the garrison. Are you sure?");
-localeStrings.push("You are going to dismiss a knight from the garrison. Are you sure?"); // 355
-localeStrings.push("You are going to dismiss all sergeants from the garrison. Are you sure?");
-localeStrings.push("You are going to dismiss all turkopols from the garrison. Are you sure?");
-localeStrings.push("You are going to dismiss all knights from the garrison. Are you sure?");
+localeStrings.push("从英雄队伍中开除一名军士");
+localeStrings.push("从英雄队伍中开除所有军士");
+localeStrings.push("从英雄队伍中开除一名枪兵");
+localeStrings.push("从英雄队伍中开除所有枪兵");
+localeStrings.push("从英雄队伍中开除一名骑士");  //350
+localeStrings.push("从英雄队伍中开除所有骑士");
+localeStrings.push("解散英雄小队的所有部队");
+localeStrings.push("你要解雇驻军的一名军士。你确定吗?");
+localeStrings.push("你要解雇驻军的一名枪兵。你确定吗?");
+localeStrings.push("你要解雇驻军的一名骑士。你确定吗?"); // 355
+localeStrings.push("你要解雇驻军的所有军士。你确定吗?");
+localeStrings.push("你要解雇驻军的所有枪兵。你确定吗?");
+localeStrings.push("你要解雇驻军的所有骑士。你确定吗?");
 localeStrings.push("You are going to dismiss a sergeant from the hero's squad. Are you sure?");
 localeStrings.push("You are going to dismiss a turkopol from the hero's squad. Are you sure?"); //360
 localeStrings.push("You are going to dismiss a knight from the hero's squad. Are you sure?");
@@ -406,9 +406,9 @@ localeStrings.push("You don't have any turkopols at the hero's squad");
 localeStrings.push("You don't have any knights at the hero's squad");
 localeStrings.push("You don't have any forces at the garrison"); 
 localeStrings.push("You don't have any forces at the hero's squad");
-localeStrings.push("sergeants(%arg1)"); //375
-localeStrings.push("turkopols(%arg1)");
-localeStrings.push("knights(%arg1)");
+localeStrings.push("军士(%arg1)"); //375
+localeStrings.push("枪兵(%arg1)");
+localeStrings.push("骑士(%arg1)");
 
 locObj = {};
 //locObj.welcome2 = {"txt":"", "loc":""};
