@@ -40,6 +40,9 @@
 			top:0px;
 			z-index:3;
 		}
+		.tables {
+			
+		}
 		/*fire*/
 		.fire {
 			position:absolute;
@@ -52,6 +55,15 @@
 			left:0px;
 			top:0px;
 			z-index:99;
+		}
+		.dynamicCells {
+			
+		}
+		.dynamicCellsDay {
+			color: rgb(0,0,0);
+		}
+		.dynamicCellsNight {
+			color: rgb(64,64,64);
 		}
 		.resources{
 			position: relative;
@@ -69,7 +81,8 @@
 			overflow: auto;
 		}
 
-		#lblAutocampaignJournal {
+		#lblAutocampaignJournal,
+		#lblAutocampaignBattle {
 			width: 800px;
 			height: 420px;
 			top: 60px;
@@ -82,7 +95,7 @@
 		div.tab {
 			overflow: hidden;
 			border: 1px solid #ccc;
-
+			box-sizing: border-box;
 			width: 800px;
 			background-color: #f1f1f1;
 		}
@@ -119,12 +132,18 @@
 		/* Style the tab content */
 		.tabcontent {
 			display: none;
-			padding: 6px 0px;
+			padding: 16px 0 6px;
 			border: 1px solid #ccc;
+			box-sizing: border-box;
 			border-top: none;
 			height: 470px;
 			width: 800px;/*800-12*2*/
 		}
+		
+		.tabcontent > div:not(#lblAboutGame) {
+			margin-top: 20px;
+		}
+		
 		/* Style the close button */
 		.topright {
 			float: right;
@@ -186,25 +205,29 @@
 			height: 22px;
 		}
 
-		.accordion {
+		.accordion,
+		.accordion-battle {
 			box-sizing: border-box;
 			width: 100%;
 			padding: 0 20px;
 			margin-bottom: 6px;
 		}
 
-		.accordion-header {
+		.accordion-header,
+		.accordion-battle-header {
 			padding: 8px 10px;
 			border: 1px solid #333;
 			background-color: #f1f1f1;
 		}
 
-		.accordion-body {
+		.accordion-body,
+		.accordion-battle-body {
 			display: none;
 			padding: 10px;
 		}
 
-		.accordion.active > .accordion-body {
+		.accordion.active > .accordion-body,
+		.accordion-battle.active > .accordion-battle-body {
 			display: block;
 		}
 
@@ -219,6 +242,48 @@
 		.unit-info > p {
 			margin-top: 0;
 			margin-bottom: 4px;
+		}
+
+		.resource-panel {
+			width: 800px;
+			padding: 6px 10px;
+			background-color: #f1f1f1;
+			position: absolute;
+			border: 1px solid #ccc;
+			border-top: 0;
+			z-index: 999;
+			box-sizing: border-box;
+			display: flex;
+		}
+
+		.resource-icon {
+			width: 20px;
+			margin-right: 5px;
+		}
+
+
+		#pop_img {
+			width: 17px;
+		}
+
+		#gems_img {
+			width: 22px;
+		}
+
+		.gold-val,
+		.population-val,
+		.gems-val,
+		.time-val {
+			display: flex;
+			align-items: center;
+			margin-right: 12px;
+		}
+
+		.gold-val,
+		.population-val,
+		.gems-val,
+		.time-val > span {
+			color: inherit;
 		}
 
 	</style>
@@ -237,48 +302,49 @@
 			<button class="tablinks" onclick="openTab(event, 'Main')" id="tabCity">Main</button>
 			<!--<button class="tablinks" onclick="openTab(event, 'Explore')" id="tabExplore" style="display:none">Explore</button>-->
 			<button class="tablinks" onclick="openTab(event, 'Building')" id="tabBuilding">Building</button>
-			<button class="tablinks" onclick="openTab(event, 'Garrison')" id="tabGarrison">Garrison</button>
+			<!--<button class="tablinks" onclick="openTab(event, 'Garrison')" id="tabGarrison">Garrison</button>-->
 			<button class="tablinks" onclick="openTab(event, 'Settings')" id="tabSettings">Settings</button>
 			<button class="tablinks" onclick="openTab(event, 'About')" id="tabAbout">How To Play</button>
 			<button class="tablinks" onclick="openTab(event, 'Discord')" id="tabDiscord">Discord</button>
-			<div id="dcounter">30</div>
 			<div id="lblEventCountdownValue" style="margin-left:20px;" onclick="game.getEventHelp()"></div>
 			<!--<a href="https://www.patreon.com/bePatron?u=7838459" target="_blank"><img src="resources/patreon.png" style="padding: 6px 0px"></a>-->
 		</div>
+
+		<div class="resource-panel">
+			<div class="gold-val" onclick="checkGold()">
+				<img id="gold_img_bt" class="resource-icon" src="resources/gold_a.png">
+				<span id="gold">0</span>
+			</div>
+			<div class="population-val" onclick="checkPop()">
+				<img id="pop_img" class="resource-icon" src="resources/pop.png">
+				<span id="pop">2</span>
+			</div>
+			<div class="gems-val" onclick="showModal(0, '', getAck, localeStrings[90],  localeStrings[60], '');">
+				<img id="gems_img" class="resource-icon" src="resources/amber_ico.png">
+				<span id="gems">0</span>
+			</div>
+			<div class="time-val">
+				<img class="resource-icon" src="resources/sand_clock.png">
+				<span id="dcounter">30</span>
+			</div>
+		</div>
+
 		<div id="Main" class="tabcontent">
 			<canvas width="800" height="480" id="canvas" class="canvas" style="z-index:1"></canvas>
 			<br>
-			<p id="resources">
-				<span id="gold" class="interface" onclick="checkGold()" style="position:absolute; top:100px; left:60px">0</span>
-				<br>
-				<br>
-				<span id="pop"  class="interface" onclick="checkPop()"  style="position:absolute; top:140px; left:60px">2</span>
-				<br>
-				<br>
-				<span id="gems"  class="interface" onclick="showModal(0, '', getAck, localeStrings[90],  localeStrings[60], '');" style="position:absolute; top:180px; left:60px">0</span>
-			</p>
 			<p id="events_graphics" style="z-index: 8">
-
 			</p>
-			<!--<img src="resources/fire_a.gif" id="fire_graphics" onclick="putOutFire()" style="position:absolute; top:170px; left:0px; z-index=98; display:none">-->
 			<button id="saveGameButton"   onclick="saveGame()" class="interface" style="top:250px; left: 20px">Save game</button>
 			<button id="loadGameButton"   onclick="loadGame()" class="interface" style="display: inline; top:310px; left: 20px; visibility:hidden">Load game</button>
 			<button id="buttonPutOutFire"   onclick="game.putOutFire()" class="interface" style="top:370px; left: 20px; display:none">Put out fire</button>
 			<button id="buttonDeathPenalty"   onclick="game.deathPenalty()" class="interface" style="top:460px; left: 20px; display:none">Execute smb</button>
 			<button id="buttonDebug"   onclick="ym(47225574, 'reachGoal', 'min5'); return true;" class="interface" style="top:190px; left: 20px; display:none">X</button>
-			<!--
-			<iframe id="constructionWindow" src="construction.html" class="interface" style="left:600px" width="1" height="1"></iframe>
-			<button id="constructionButton" onclick="maximizew('construction')" class="interface" style="top:260px">Open construction menu</button>
-			-->
 		</div>
 		<div id="Explore" class="tabcontent">
 			<canvas width="800" height="480" id="canvasMap" class="canvas" style="z-index:1"></canvas>
 		</div>
 		<div id="Settings" class="tabcontent">
-			<!--<span onclick="this.parentElement.style.display='none'" class="topright">x</span>-->
 			<h3><div id="labelSettings">Settings</div></h3>
-			<!-- TODO make checkboxes with chat system messages -->
-			<!--<p>Alert / MSG to chat</p>-->
 			<select id="selectLng" size="1" onchange="reloadLang()">
 				<option id="optionLngEn" selected value="en-US">English</option>
 				<option id="optionLngRu"          value="ru-RU">Русский</option>
@@ -288,7 +354,6 @@
 			</select>
 			<table>
 			<tr>
-				<!-- TODO make a message about turning on / off autosaves for color disabled people -->
 				<td width="40%"><label id="labelAutosave">Autosave</label><img id="autosaveImg" onclick="changeAutosave()" src="resources/button_red.png" style="margin-left: 20px;"></td>
 				<td><button id="buttonExportGame" onclick="exportGame()" >Export Game</button></td>
 				<td><button id="buttonImportGame" onclick="importGame()" >Import Game</button></td>
@@ -405,13 +470,13 @@
 			<hr>
 			<button id="btnToGeneralSettings" onclick="openTab(null, 'Settings')">Back</button>
 		</div>
-		<div id="Garrison" class="tabcontent">
+		<div id="tabGarrison" class="tabcontent">
 			<h3><div id="labelGarrison">Garrison</div></h3>
 			<div id="divtreasuryGuard">
 			<table border="1">
 				<tr>
 					<td>
-						<div align="center">
+						<div id="treasury_guard_div" align="center">
 							<img src="resources/knight6.png">
 						</div>
 					</td>
@@ -421,9 +486,6 @@
 						<button id="buttonFireGuard" onclick="game.fireTreasuryGuard()" style="width:100px">Fire</button>
 						<span id="treasuryGuard">0</span>
 						<button id="buttonHireGuard" onclick="game.hireTreasuryGuard()" style="width:100px">Hire</button>
-						<!--<button id="fireGuard" onclick="fireTreasuryGuard()" class="interface" style="top:170px; left:20px; width:80px">Fire</button>
-						<span id="treasuryGuard" class="interface" style="position:absolute; top:170px; left:120px">0</span>
-						<button id="hireGuard" onclick="hireTreasuryGuard()" class="interface" style="top:170px; left:180px;-->
 					</td>
 				</tr>
 			</table>
@@ -552,10 +614,10 @@
 							</table>
 						</td>
 						<td>
-							<div id="lblBuildGold">
+<!-- 							<div id="lblBuildGold">
 							<img id="gold_img_bt" src="resources/gold_a.png" onclick="checkGold()" >
 							<span id="gold_bt" onclick="checkGold()" >0</span>
-							</div>
+							</div> -->
 							<div id="lblBuildHelp">
 
 							</div>
@@ -571,7 +633,6 @@
 			</div>
 		</div>
 		<div id="tabPopulation" class="tabcontent">
-			<!-- TODO make style!!! -->
 			<div id="lblTabPop">Population history tab</div>
 			<br>
 			<table border="1">
@@ -592,7 +653,6 @@
 			<div id="lblCurrentPopLimit"></div>
 		</div>
 		<div id="tabGold" class="tabcontent">
-			<!-- TODO make style!!! -->
 			<div id="lblTabGold">Gold history tab</div>
 			<br>
 			<table border="1">
@@ -616,12 +676,33 @@
 			<div id="lblTabInn">Welcome to Inn!</div>
 			<br>
 			<br>
+			
 			<div id="hireHeroBlock">
-				<select id="selectHeroClass" size="1" onchange="reloadHeroClassImg()">
-					<option id="optionKnight" selected value="0">Knight</option>
-					<option id="optionMonk"            value="1"  >Monk</option>
-					<!--TODO <option id="optionInquisitor"          value="inquisitor">Inquisitor</option> -->
-				</select>
+				<label id="lblAvailableForHire">Hero for hire</label>
+				<table>
+					<tr>
+						<td>
+							<!--HRP-->
+						<img id="imgPrevHero" src="resources/pointer_l.png" onclick="prevHero()">
+						<img id="imgHeroForHire" src="resources/hero-knight.png">
+						<img id="imgNextHero" src="resources/pointer_r.png" onclick="nextHero()">
+						</td>
+						<td>
+						<div>
+							<label id="lblClassForHire">Knight</label>
+							<label>,  </label>
+							<label id="lblLevelForHireLbl">level </label>
+							<label id="lblLevelForHire">1</label>
+						</div>
+						<div>
+							<label id="lblPrimaryStats">ATK:2, DEF:2, INT: 2, MP: 20</label>
+						</div>
+						<div>
+							<label id="lblSpeciality">Get high chances to increase ATK when level up</label>
+						</div>
+						</td>
+					</tr>
+				</table>
 				<button id="btnHireHero"    onclick="game.heroHire()" style="width:160px; margin-left: 30px">Hire hero %arg1 level</button>
 			</div>
 			<div id="heroUpkeep">
@@ -644,11 +725,21 @@
 			<br>
 			<button id="btnLeaveCity"    onclick="game.cityLeave()" style="width:160px; visibility: hidden">Go to exploring!</button>
 			<button id="btnGenerateMap"    onclick="game.generateMap()" style="width:160px">Regenerate map</button>
+
+			<button id="btnAutobattlesList" onclick="openTabAutocampaignBattle()" style="width:160px">Autocampaign battles</button>
+
 		</div>
+
 		<div id="tabAutocampaignJournal" class="tabcontent">
 			<div id="lblAutocampaignJournal" class="interface"></div>
 			<button id="btnToInn" class="interface" style="width:160px; top: 480px; left:50px;" onclick="openTab(null, 'tabInn')">Back</button>
 		</div>
+
+		<div id="tabAutocampaignBattle" class="tabcontent">
+			<div id="lblAutocampaignBattle" class="interface"></div>
+			<button id="btnToInn1" class="interface" style="width:160px; top: 480px; left:50px;" onclick="openTab(null, 'tabInn')">Back</button>
+		</div>
+
 		<div id="tabTroopsHiring" class="tabcontent">
 			<label id="lblTroopsHiring">Hiring troops</label><br>
 			<div id="lblTroopsHelp" style="height: 80px; width: 780px;">
@@ -715,7 +806,7 @@
 						<img id="imgCastellanInHiringScreen" src="resources/castellan.png" onmouseover="game.help(this)">
 					</td>
 					<td>
-						<label class="lblHiringTroops" id="lblTabHiringTroopsSergeantsGarrison">sergeants: </label><div id="lblGarnisonSergeants" style="display: inline">0</div>
+						<div><label class="lblHiringTroops" id="lblTabHiringTroopsSergeantsGarrison">sergeants: </label></div><div id="lblGarnisonSergeants" style="display: inline">0</div>
 						<button class="btnArrow" id="btnMoveSergeantToHero" onclick="game.moveSergeantsToHero()" onmouseover="game.help(this)">↓</button>
 						<button class="btnArrow" id="btnMoveAllSergeantsToHero" onclick="game.moveAllSergeantsToHero()" onmouseover="game.help(this)">⇓</button>
 						<br>
@@ -723,7 +814,7 @@
 						<button id="btnDismissAllGarrisonSergeants" class="btnDismiss" onclick="game.dismissAllGarrisonSergenats()" onmouseover="game.help(this)">XX</button>
 					</td>
 					<td>
-						<label class="lblHiringTroops" id="lblTabHiringTroopsTurkopolsGarrison">turkopols: </label><div id="lblGarnisonTurkopols" style="display: inline">0</div>
+						<div><label class="lblHiringTroops" id="lblTabHiringTroopsTurkopolsGarrison">turkopols: </label></div><div id="lblGarnisonTurkopols" style="display: inline">0</div>
 						<button class="btnArrow" id="btnMoveTurkopolToHero" onclick="game.moveTurkopolsToHero()" onmouseover="game.help(this)">↓</button>
 						<button class="btnArrow" id="btnMoveAllTurkopolsToHero" onclick="game.moveAllTurkopolsToHero()" onmouseover="game.help(this)">⇓</button>
 						<br>
@@ -731,7 +822,7 @@
 						<button id="btnDismissAllGarrisonTurkopols" class="btnDismiss" onclick="game.dismissAllGarrisonTurkopols()" onmouseover="game.help(this)">XX</button>
 					</td>
 					<td>
-						<label class="lblHiringTroops" id="lblTabHiringTroopsKnightsGarrison">knights: </label><div id="lblGarnisonKnights" style="display: inline">0</div>
+						<div><label class="lblHiringTroops" id="lblTabHiringTroopsKnightsGarrison">knights: </label></div><div id="lblGarnisonKnights" style="display: inline">0</div>
 						<button class="btnArrow" id="btnMoveKnightToHero" onclick="game.moveKnightsToHero()" onmouseover="game.help(this)">↓</button>
 						<button class="btnArrow" id="btnMoveAllKnightsToHero" onclick="game.moveAllKnightsToHero()" onmouseover="game.help(this)">⇓</button>
 						<br>
@@ -750,7 +841,7 @@
 						<img id="imgHeroInHiringScreenMonk" style="display: none" src="resources/hero-monk.png" onmouseover="game.help(this)">
 					</td>
 					<td>
-						<label class="lblHiringTroops" id="lblTabHiringTroopsSergeantsHeroSquad">sergeants: </label><div id="lblHeroSergeants" style="display: inline">0</div>
+						<div><label class="lblHiringTroops" id="lblTabHiringTroopsSergeantsHeroSquad">sergeants: </label></div><div id="lblHeroSergeants" style="display: inline">0</div>
 						<button class="btnArrow" id="btnMoveSergeantToGarrison" onclick="game.moveSergeantsToGarnison()" onmouseover="game.help(this)">↑</button>
 						<button class="btnArrow" id="btnMoveAllSergeantsToGarrison" onclick="game.moveAllSergeantsToGarrison()" onmouseover="game.help(this)">⇑</button>
 						<br>
@@ -758,7 +849,7 @@
 						<button id="btnDismissAllHeroSergeants" class="btnDismiss" onclick="game.dismissAllHeroSergeants()" onmouseover="game.help(this)">XX</button>
 					</td>
 					<td>
-						<label class="lblHiringTroops" id="lblTabHiringTroopsTurkopolsHeroSquad">turkopols: </label><div id="lblHeroTurkopols" style="display: inline">0</div>
+						<div><label class="lblHiringTroops" id="lblTabHiringTroopsTurkopolsHeroSquad">turkopols: </label></div><div id="lblHeroTurkopols" style="display: inline">0</div>
 						<button class="btnArrow" id="btnMoveTurkopolToGarrison" onclick="game.moveTurkopolsToGarnison()" onmouseover="game.help(this)">↑</button>
 						<button class="btnArrow" id="btnMoveAllTurkopolsToGarrison" onclick="game.moveAllTurkopolsToGarrison()" onmouseover="game.help(this)">⇑</button>
 						<br>
@@ -766,7 +857,7 @@
 						<button id="btnDismissAllHeroTurkopols" class="btnDismiss" onclick="game.dismissAllHeroTurkopols()" onmouseover="game.help(this)">XX</button>
 					</td>
 					<td>
-						<label class="lblHiringTroops" id="lblTabHiringTroopsKnightsHeroSquad">knights: </label><div id="lblHeroKnights" style="display: inline">0</div>
+						<div><label class="lblHiringTroops" id="lblTabHiringTroopsKnightsHeroSquad">knights: </label></div><div id="lblHeroKnights" style="display: inline">0</div>
 						<button class="btnArrow" id="btnMoveKnightToGarrison" onclick="game.moveKnightsToGarnison()" onmouseover="game.help(this)">↑</button>
 						<button class="btnArrow" id="btnMoveAllKnightsToGarrison" onclick="game.moveAllKnightsToGarrison()" onmouseover="game.help(this)">⇑</button>
 						<br>
@@ -782,8 +873,8 @@
 			</table>
 		</div>
 		<div id="tabBlackmarket" class="tabcontent">
-			<img id="gold_img_bm" src="resources/gold_a.png" onclick="checkGold()" style="position:absolute; top:60px; left:40px">
-			<span id="gold_bm" class="interface" onclick="checkGold()" style="position:absolute; top:60px; left:120px">0</span>
+<!-- 			<img id="gold_img_bm" src="resources/gold_a.png" onclick="checkGold()" style="position:absolute; top:60px; left:40px">
+			<span id="gold_bm" class="interface" onclick="checkGold()" style="position:absolute; top:60px; left:120px">0</span> -->
 			<br>
 			<br>
 			<br>
@@ -892,7 +983,7 @@
 			<div id="outTable">
 			</div>
 		</div>
-		<div id="console_n_chat" name="console_n_chat" class="interface" value="" style="width:800px; height:150px; top: 540px; left: 10px"></div>
+		<div id="console_n_chat" name="console_n_chat" class="interface" value="" style="width:800px; height:150px; top: 548px; left: 10px"></div>
 		<canvas id="myDCanvas" width="700" height="200" style="position: absolute; left: 20px; top: 100px; z-index: -2; visible:none">
 		Your browser does not support the HTML5 canvas tag.</canvas>
 </div>
@@ -1154,11 +1245,11 @@
 		ctx.drawImage(img1, 0, 0);   //draw background
 		ctx.drawImage(img2, sawmillX, sawmillY);//draw sawmill
 		pushBuilding('sawmill', sawmillX, sawmillY, sawmillW, sawmillH);
-		ctx.drawImage(img3, goldX, goldY); //draw gold icon
-		pushBuilding('gold', goldX, goldY, goldW, goldH);
-		ctx.drawImage(img4, popX, popY); //draw pop  icon
-		pushBuilding('amber', amberX, amberY, amberW, amberH);
-		ctx.drawImage(amber_ico, amberX, amberY); //draw pop  icon
+		// ctx.drawImage(img3, goldX, goldY); //draw gold icon
+		// pushBuilding('gold', goldX, goldY, goldW, goldH);
+		// ctx.drawImage(img4, popX, popY); //draw pop  icon
+		// pushBuilding('amber', amberX, amberY, amberW, amberH);
+		// ctx.drawImage(amber_ico, amberX, amberY); //draw pop  icon
 		pushBuilding('pop', popX, popY, popW, popH);
 		ctx.drawImage(img8, wellX, wellY); //draw wishing well
 		pushBuilding('well', wellX, wellY, wellW, wellH);
@@ -1357,7 +1448,7 @@
 			game.makeFestival();
 		}
 		if (buildingName==='treasury') {
-			alertMsg = localeStrings[143];
+			openTab(null, 'tabGarrison');
 			if (game.checkAudio('sfx', 'all')===true) {
 				var arnd = Math.floor(Math.random() * 3);
 				var Audio = 'treasuryAudio'+arnd;
@@ -1407,9 +1498,10 @@
 	var blackmarket_tile= loadImage('resources/black_market.png');
 	var bmarket_burned_tile= loadImage('resources/black_market_burned.png');
 	var hero_tile       = loadImage('resources/someKnight3.png');
+	var hero_atk_tile   = loadImage('resources/someKnightAttacked2.png');
 	var chest_tile      = loadImage('resources/chest.png');
 	var pumpkin_tile    = loadImage('resources/pumpkin.png');
-	var monster_tile    = loadImage('resources/bloody_monster_old.png');
+	var monster_tile    = loadImage('resources/monster_redpeople.png');
 	var tree_tile       = loadImage('resources/tree.png');
 	var arrow_l         = loadImage('resources/pointer_l.png');
 	var arrow_r         = loadImage('resources/pointer_r.png');
@@ -1442,7 +1534,6 @@
 			camYL = config.sizeMapY-config.sizeScrY;
 			camYH = config.sizeMapY;
 		}
-		console.log('camYL, camYH are '+camYL+', '+camYH);
 		for (i = 0; i < config.sizeScrX; i++) {
 			for (j = 0; j < config.sizeScrY; j++) {
 				if (game.myMapLand[i+camXL][j+camYL]===0) {
@@ -1536,8 +1627,10 @@
 					ctx_map.drawImage(monster_tile, i * 48, j * 48);
 				}
 				if (game.myMapRemObjects[i+camXL][j+camYL]===40) {
-					console.log("draw hero");
 					ctx_map.drawImage(hero_tile, i * 48, j * 48);   //draw hero
+				}
+				if (game.myMapRemObjects[i+camXL][j+camYL]===41) {
+					ctx_map.drawImage(hero_atk_tile, i * 48, j * 48);   //draw hero being attacked
 				}
 			}
 		}
@@ -1658,14 +1751,62 @@ WeightedRandom.prototype.clearEntriesList = function() {
 	flag_event_started = "";
 	allowMvt = 1;
 	curObjId = "";
-
-	var heroAttributesRandomizer = new WeightedRandom();
+	
+	//OTHERWISE RECORDS ONLY ADDS AND STACKS IN THE SAME OBJECT FOR DIFFERENT HEROES
+	//CANDIDATE FOR DELETING
+	//var heroAttributesRandomizer = new WeightedRandom();
+	
 	var enemyRandomizer = new WeightedRandom();
+	function Monster(monster, coordx, coordy) {
+		this.monster = monster;
+		this.coordx = coordx;
+		this.coordy = coordy;
+	}
+	var config = {
+		startPop: 6,
+		costWall:2,
+		costTower:8,
+		costCastle:24,
+		costHome:2,
+		costTreasury:20,
+		costGallows:50,
+		costFountain:50,
+		costStash:50,
+		costInn:20,
+		costStable:50,
+		costSmith:50,
+		costArchery:50,
+		lotteryPrize:50,
+		treasuryGuardPriceHire:20,
+		treasuryGuardPricePayroll:10,
+		costPutOutFire:20,
+		sizeMapX:18,//18
+		sizeScrX:16,//16
+		sizeMapY:18,//18
+		sizeScrY:10,//10
+		costHero:20,
+		heroExpK:5,
+		festPrice:2,
+		festCooldown:30,
+		glSaveVersion:9,
+		genMapCostBasic:50,
+		fireStepsBasic:60,
+		oneSecMS:1000,
+		sergeantHiring:20,
+		sergeantUpkeep:5,
+		turkopolHiring:20,
+		turkopolUpkeep:5,
+		knightHiring:40,
+		knightUpkeep:10,
+		chestMoney:25,
+		chestCity_timeout:15000,//ms
+		chestCity:50,
+	};
 
 	var game = {
 		gold: 20,
 		gems: 0,
-		pop: 2,
+		pop: config.startPop,
 		season: 2, //1 - Winter, 2 - Spring, 3 - Summer, 4 - Autumn
 		year: 1255,
 		food: 20,
@@ -1727,15 +1868,17 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		tips: [],
 		chestCity: 0,
 		autocampaignCounter: 0,
+		autocampaignBattlesCounter: 0,
 		enemyHero: null,
 		enemyHeroArmy: {armyID: 2, units: {}},
 		enemyMaxArmyCount: 3, 
 		expReward: 0,
 		goldReward: 0,
 		difficultyModifier: 0,
-		attacker: 0,
+		attacker: 1,
 		isAutoBattle: false,
-
+		nightMode: false,
+		monstersOnAdvMap: [],
 		changeUpkeepSrc : function () {
 			var x         = document.getElementById("selectUpkeepSrc").selectedIndex;
 			var y         = document.getElementById("selectUpkeepSrc").options;
@@ -2293,6 +2436,32 @@ WeightedRandom.prototype.clearEntriesList = function() {
 				};
 			}
 		},
+		checkMonsters : function () {
+			//WIP
+			for (index = 0; index < game.monstersOnAdvMap.length; ++index) {
+				if (Math.abs(game.heroY-game.monstersOnAdvMap[index].coordy)<=1) {
+					if (Math.abs(game.heroX-game.monstersOnAdvMap[index].coordx)<=1) {
+						if (Math.abs(game.heroY-game.monstersOnAdvMap[index].coordy)===1&&Math.abs(game.heroX-game.monstersOnAdvMap[index].coordx)===1){
+							//do nothing
+						} else {
+							console.log("movement a monster toward the hero");
+							game.myMapRemObjects[game.heroX][game.heroY]=41;//hero tile in attacked state
+							//prepare for battle!
+							//generate enemy squad
+							game.generateEnemyUnitsForBattle();
+							game.calcAttackPhase("AdvMap");
+							//suppose we win the battle
+							//removing the monster from removable objects (render array)
+							game.myMapRemObjects[game.monstersOnAdvMap[index].coordx][game.monstersOnAdvMap[index].coordy] = 0;
+							//removing the monster object from monsters array
+							game.monstersOnAdvMap.splice(index, 1);
+							composite_gm();
+							break;
+						}
+					}
+				}
+			}
+		},
 		placeMobsOnTheMap : function(elemsToDefend) {
 			console.log(elemsToDefend);
 			//WIP
@@ -2300,7 +2469,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 			neighbor_offsets_ext = [[0, 1], [1, 0], [0, -1], [-1, 0],
 									[1, 1], [-1, -1], [1, -1], [-1, 1]];
 			for (i = 0; i < elemsToDefend.length; i++) {
-			    everyPoint = elemsToDefend[i];
+				everyPoint = elemsToDefend[i];
 				mobPlaced = false;
 				neighbor_offsets_s = [];
 				
@@ -2331,8 +2500,10 @@ WeightedRandom.prototype.clearEntriesList = function() {
 								}
 							}
 							if (castleEntranceFound === false) {
-							    mobPlaced = true;
-							    game.myMapRemObjects[neighbor_x][neighbor_y]=3;
+								mobPlaced = true;
+								game.myMapRemObjects[neighbor_x][neighbor_y]=3;
+								mymonster = new Monster("monster", neighbor_x, neighbor_y);
+								game.monstersOnAdvMap.push(mymonster);
 							}
 						}
 					}
@@ -2603,6 +2774,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 							openTab(null, 'tabBlackmarket');
 						}
 					}
+					game.checkMonsters();
 					composite_gm();
 					allowMvt = 0;
 					setTimeout(cooldownMvt, 200);
@@ -2673,8 +2845,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		/*-- New: Used for adding troops to squands on autocamp. start and after recalc of enemy troops when autobattle is over (if gamer is won the battle of course) --*/
 
 		genUnitStack: function(unit, count, squad) {
-		  
-				var stackName = unit.name;
+			var stackName = unit.name;
 			if (squad && squad.hasOwnProperty(stackName)) {
 				squad[stackName].count += count;
 				squad[stackName].stackHealth = squad[stackName].health * squad[stackName].count;
@@ -2726,26 +2897,23 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		},
 
 		checkWinner: function() {
-		  if (game.attacker === 1) {
+			if (game.attacker === 1 && !game.isAutoBattle) {
+				if (game.myhero.stance === 1) {
+					postJournalLog(localeStrings[174]);
+				} else {
+					postJournalLog(localeStrings[173]);
+				}
+				console.log("The player is the winner");
+				game.myhero.gold += game.goldReward;
+				game.myhero.exp += game.expReward;
+				game.restoreHealth();
+				game.generateEnemyUnitsForBattle();
 
-		  	if (game.myhero.stance === 1) {
-				postJournalLog(localeStrings[174]);
 			} else {
-				postJournalLog(localeStrings[173]);
+				postJournalLog(localeStrings[172]);
+				game.heroDie();
+				console.log("The PC opponent is the Winner");
 			}
-
-		  	console.log('Winner is player')
-
-			game.myhero.gold += game.goldReward;
-			game.myhero.exp += game.expReward;
-			game.restoreHealth();
-			game.generateEnemyUnitsForBattle();
-
-		  } else {
-		  	postJournalLog(localeStrings[172]);
-		  	game.heroDie();
-		  	console.log("Winner is COMP")
-		  }
 		},
 
 		calcDmg: function(attackerSquad, attackerHeroAttack, defenderSquad, defenderHeroDefence) {
@@ -2783,30 +2951,54 @@ WeightedRandom.prototype.clearEntriesList = function() {
 
 		},
 
-		calcAutoBattle: function(attackerStack, attackerHeroAttack, defenderStack, defenderHeroDefence) {
+		unitNameLoc: function (name) {
+			switch (name) {
+				case "sergeants": return locObj.unit_sergeants.txt;
+				case "turkopols": return locObj.unit_turkopols.txt;
+				case "knights": return locObj.unit_knights.txt;
+				case "bandit": return locObj.unit_bandit.txt;
+				case "banditArcher": return locObj.unit_bandit_archer.txt;
+				case "mercSwordman": return locObj.unit_merc_swordman.txt;
+				case "mercSpearmen": return locObj.unit_merc_spearman.txt;
+				default: return "Unknown unit name";
+			}
+		},
+
+		calcAutoBattle: function(attackerStack, attackerHeroAttack, defenderStack, defenderHeroDefence, campaignType) {
 
 		  console.log('--Attack start --');
 
+		  var startRoundStr = locObj.autobattle_journal_log_start.txt;
+		  var endRoundStr = locObj.autobattle_journal_log_end.txt;
+		  if (campaignType==="AutoCampaign") {
+		    postBattleLog(startRoundStr);
+		  }
 		  for (var attackerKey  in attackerStack.units) {
 
 		    if (attackerStack.units.hasOwnProperty(attackerKey)) {
 
-		      console.log('Attacker: ', attackerStack.units[attackerKey]);
+		    	console.log('Attacker: ', attackerStack.units[attackerKey]);
 
 		      for (var defenderKey in defenderStack.units) {
 
 		        if (defenderStack.units.hasOwnProperty(defenderKey)) {
 
-		          var target = defenderStack.units[defenderKey];
-		          var dmg = game.calcDmg(attackerStack.units[attackerKey], attackerHeroAttack, defenderStack.units[defenderKey], defenderHeroDefence);
-		          console.log('DMG before round: ', dmg);
-		          dmg = Math.round(dmg);
-		          console.log(dmg);
+					var target = defenderStack.units[defenderKey];
+
+					var dmg = game.calcDmg(attackerStack.units[attackerKey], attackerHeroAttack, defenderStack.units[defenderKey], defenderHeroDefence);
+					console.log('DMG before round: ', dmg);
+					dmg = Math.round(dmg);
+					console.log(dmg);
+
+					var attackerStr = locObj.autobattle_journal_log_dmg.txt.replace("%arg1", game.unitNameLoc(attackerStack.units[attackerKey].name)).replace("%arg2", dmg).replace("%arg3", game.unitNameLoc(target.name));
+					
 
 		          if (dmg >= target.stackHealth) {
 		            console.log(`${target.name} is dying`);
 		            delete defenderStack.units[defenderKey];
 		            console.log("%c DEFENDER UNITS LIST: ", "background: purple; color: #ededed", defenderStack.units);
+					attackerStr += ' '  + locObj.autobattle_journal_log_destroyed.txt.replace("%arg1", game.unitNameLoc(target.name));
+					postBattleLog(attackerStr);
 		            if (isEmptyObj(defenderStack.units)) {
 		              game.isAutoBattle = false;
 		              game.checkWinner();
@@ -2816,22 +3008,36 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		            var defenderLooses = parseInt(dmg / defenderStack.units[defenderKey].health);
 		            defenderStack.units[defenderKey].count -= defenderLooses;
 		            target.stackHealth -= dmg;
+		            if (defenderLooses > 0) {
+		            	attackerStr += ' ' + locObj.autobattle_journal_log_dead.txt.replace("%arg1", defenderLooses).replace("%arg2", game.unitNameLoc(target.name));
+		            }
+		            if (campaignType==="AutoCampaign") {
+		              postBattleLog(attackerStr);
+		            }
 		          }
+
 		        }
 		      }
 
+		      
+
 		    }
+
 		  }
-
-
+		  if (campaignType==="AutoCampaign") {
+		    postBattleLog(endRoundStr);
+		  }
 		  console.log('-- Attack turn ended --');
 		  console.log('-----------------------');
 
 		},
 
-		calcAttackPhase: function () {
-			game.attacker = randomFromRange(game.myheroArmy.armyID, game.enemyHeroArmy.armyID);
-
+		calcAttackPhase: function (campaignType) {
+			if (campaignType==="AdvMap"){
+				game.attacker = game.myheroArmy.armyID;
+			} else {
+				game.attacker = randomFromRange(game.myheroArmy.armyID, game.enemyHeroArmy.armyID);
+			}
 			var attackVal = 0;
 			var defenceVal = 0;
 			
@@ -2845,19 +3051,19 @@ WeightedRandom.prototype.clearEntriesList = function() {
 					defenceVal = game.enemyHero.def
 				}
 
-				game.calcAutoBattle(game.myheroArmy, attackVal, game.enemyHeroArmy, defenceVal);
+				game.calcAutoBattle(game.myheroArmy, attackVal, game.enemyHeroArmy, defenceVal, campaignType);
 				game.attacker = 2;
-			} else {
+			} else if (game.attacker === 2) {
 
 				if (game.enemyHero && game.enemyHero.atk) {
-					attackVal = game.myhero.atk;
+					attackVal = game.enemyHero.atk;
 				}
 
 				if (game.myhero.def) {
 					defenceVal = game.myhero.def
 				}
 
-				game.calcAutoBattle(game.enemyHeroArmy, attackVal, game.myheroArmy, defenceVal);
+				game.calcAutoBattle(game.enemyHeroArmy, attackVal, game.myheroArmy, defenceVal, campaignType);
 				game.attacker = 1;
 			}
 		},
@@ -3063,17 +3269,14 @@ WeightedRandom.prototype.clearEntriesList = function() {
 				var heroTroopsPrice = game.heroTroopsPrice();
 				var rnd = Math.floor((Math.random() * 24) + 1);
 				if (game.myhero.stance === 0) {//aggressive stance
-					// if (rnd===1) {
-					// 	postJournalLog(localeStrings[172]);
-					// 	game.heroDie();
-					// }
+
 					if (rnd<=12) {
 
-
 						game.isAutoBattle = true;
+						createBattleAccordion();
 
 						while (game.isAutoBattle) {
-							game.calcAttackPhase();
+							game.calcAttackPhase("AutoCampaign");
 						} 
 
 					}
@@ -3085,16 +3288,11 @@ WeightedRandom.prototype.clearEntriesList = function() {
 
 					if (rnd>1 && rnd<=12) {
 
-						game.myhero.gold += game.goldReward;
-						game.myhero.exp += game.expReward;
-
-						//game.myhero.gold += Math.floor(heroTroopsPrice*0.35+1);
-						//game.myhero.exp  += Math.floor(heroTroopsPrice*0.35+1);
-
 						game.isAutoBattle = true;
+						createBattleAccordion();
 
 						while (game.isAutoBattle) {
-							game.calcAttackPhase();
+							game.calcAttackPhase("AutoCampaign");
 						} 
 
 					}
@@ -3218,7 +3416,6 @@ WeightedRandom.prototype.clearEntriesList = function() {
 			}
 		},
 		help(myobject) {
-			//WIP
 			if (myobject.id==="defencies_img") {
 				nextDefPrice = 0;
 				blMaxLvlDef = 0;
@@ -3480,47 +3677,35 @@ WeightedRandom.prototype.clearEntriesList = function() {
 						game.gold                 = game.gold - config.costHero;
 					}
 					clearJournalLog();
-					game.myhero.level         = game.buildLevelInn;
-					game.myhero.exp           = Math.pow(game.myhero.level * config.heroExpK,2);
-					var x = document.getElementById("selectHeroClass").selectedIndex;
-					var y = document.getElementById("selectHeroClass").options;
-					var heroclass             = y[x].value; //y[x].id, text, index
-					game.myhero.class         = parseInt(heroclass);
+					game.myhero.level     = heroesForHire[curHeroForHire].level;
+					game.myhero.exp       = Math.pow(game.myhero.level * config.heroExpK,2);
+					game.myhero.class     = curHeroForHire;
+					game.myhero.atk       = heroesForHire[curHeroForHire].atk;
+					game.myhero.def       = heroesForHire[curHeroForHire].def;
+					game.myhero.mpow      = heroesForHire[curHeroForHire].mpow;
+					game.myhero.int       = heroesForHire[curHeroForHire].int;
+					game.myhero.mana      = heroesForHire[curHeroForHire].int*10;
+					game.myhero.cmana     = heroesForHire[curHeroForHire].int*10;
+					
 					if (game.myhero.class===0){
-						game.myhero.atk       = 2;
-						game.myhero.def       = 2;
-						game.myhero.mpow      = 0;
-						game.myhero.int       = 0;
-						game.myhero.mana      = 0;
-						game.myhero.cmana     = 0;
 						game.myhero.lawful    = 80;
 						game.myhero.kindness  = 50;
-
 						/*-- New --*/
-
+						var heroAttributesRandomizer = new WeightedRandom();
 						heroAttributesRandomizer.addEntry('atk', 60.0);
 						heroAttributesRandomizer.addEntry('def', 40.0);
 						heroAttributesRandomizer.addEntry('int', 0.0); // Temp logic for knight, until there is no magic mechanics at autocampaign
 						heroAttributesRandomizer.addEntry('mpow', 0.0); // Temp logic for knight, until there is no magic mechanics at autocampaign
-
 					}
 					if (game.myhero.class===1){
-						game.myhero.atk       = 0;
-						game.myhero.def       = 0;
-						game.myhero.mpow      = 2;
-						game.myhero.int       = 2
-						game.myhero.mana      = 20;
-						game.myhero.cmana     = 20;
 						game.myhero.lawful    = 80;
 						game.myhero.kindness  = 70;
-
 						/*-- New --*/
-
+						var heroAttributesRandomizer = new WeightedRandom();
 						heroAttributesRandomizer.addEntry('atk', 45.0);  //Temp logic for monk, until there is no magic mechanics in autocampaign
 						heroAttributesRandomizer.addEntry('def', 55.0); //Temp logic for monk, until there is no magic mechanics in autocampaign
 						heroAttributesRandomizer.addEntry('int', 0.0);
 						heroAttributesRandomizer.addEntry('mpow', 0.0);
-
 					}
 					game.myhero.sergeants  = 0;
 					game.myhero.turkopols  = 0;
@@ -3552,6 +3737,9 @@ WeightedRandom.prototype.clearEntriesList = function() {
 					game.myhero.aCampaignForward   = 0;
 					game.myhero.aCampaignBackward  = 0;
 					updateHeroStatus();
+
+					game.gold -= config.costHero;
+
 				} else {
 					msg = "<b>%arg1</b>";
 					msg = msg.replace("%arg1",localeStrings[20]);
@@ -4292,7 +4480,11 @@ WeightedRandom.prototype.clearEntriesList = function() {
 			return Math.pow(config.costTreasury,(game.buildLevelTreasury*1+1))*2+500;
 		},
 		popLimit : function () {
-			return 2*Math.pow((game.buildLevelH*1+3),2);
+			if (game.buildLevelH>1){
+				return 2*Math.pow((game.buildLevelH*1+3),2);
+			} else {
+				return 6;
+			}
 		},
 		recordStats : function() {
 			game.years.push(game.year+" "+game.season);
@@ -4333,6 +4525,10 @@ WeightedRandom.prototype.clearEntriesList = function() {
 						msg = msg.replace("%arg1",localeStrings[10]);
 						postEventLog(msg);
 						game.userPopAck = 1;
+					}
+					if (!game.tips.includes("tutorial1-pop0")){
+						game.tips.push("tutorial1-pop0");
+						showModal(0, '', getAck, locObj.tutorial1_pop0.txt, locObj.okay.txt, '')
 					}
 				}
 			}
@@ -4609,6 +4805,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 					if (game.buildLevelInn===1) {
 						game.generateMapCallback(true);
 					}
+					populateHeroesForHire();
 					commonBuild();
 					return true;
 				} else {
@@ -5016,45 +5213,6 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		}
 	};
 	//init const-variables
-	var config = {
-		costWall:2,
-		costTower:8,
-		costCastle:24,
-		costHome:2,
-		costTreasury:20,
-		costGallows:50,
-		costFountain:50,
-		costStash:50,
-		costInn:20,
-		costStable:50,
-		costSmith:50,
-		costArchery:50,
-		lotteryPrize:50,
-		treasuryGuardPriceHire:20,
-		treasuryGuardPricePayroll:10,
-		costPutOutFire:20,
-		sizeMapX:18,//18
-		sizeScrX:16,//16
-		sizeMapY:18,//18
-		sizeScrY:10,//10
-		costHero:20,
-		heroExpK:5,
-		festPrice:2,
-		festCooldown:30,
-		glSaveVersion:9,
-		genMapCostBasic:50,
-		fireStepsBasic:60,
-		oneSecMS:1000,
-		sergeantHiring:20,
-		sergeantUpkeep:5,
-		turkopolHiring:20,
-		turkopolUpkeep:5,
-		knightHiring:40,
-		knightUpkeep:10,
-		chestMoney:25,
-		chestCity_timeout:15000,//ms
-		chestCity:50,
-	};
 
 	//init service variables
 	var cnt_cursession= 0;
@@ -5062,13 +5220,17 @@ WeightedRandom.prototype.clearEntriesList = function() {
 	var nightMode     = 0;
 	var dcounter_def  = 30;
 	var dcounter      = dcounter_def;
+	var curHeroForHire= 0;
+	var heroesForHire = [];
+	
 	updateResources();
 	populatePatchnotes();
 	var autosaveObject;
 	setupAutosave();//DEBUG
 	composite();
-	checkSaves();
+	
 	setupNickname();
+	
 	//init timers
 	setInterval(cooldown, config.oneSecMS);
 	setInterval(endOfTurnTimer, config.oneSecMS);
@@ -5080,6 +5242,11 @@ WeightedRandom.prototype.clearEntriesList = function() {
 	//functions
 	function openTabAutocampaignJournal() {
 		openTab(null, 'tabAutocampaignJournal');
+		scrollDown();
+	}
+
+	function openTabAutocampaignBattle() {
+		openTab(null, 'tabAutocampaignBattle');
 		scrollDown();
 	}
 	function getUID() {
@@ -5098,8 +5265,76 @@ WeightedRandom.prototype.clearEntriesList = function() {
 			return Date.now();
 		}
 	}
-	function reloadHeroClassImg() {
-		//just a placeholder. TODO it
+	function heroForHire(heroClass, level, heroStats, heroCurve, heroLearnCurve, image) {
+		this.heroClassLbl    = heroClass;
+		this.heroStatsArr    = heroStats;
+		this.level           = level;
+		this.atk             = heroStats[0];
+		this.def             = heroStats[1];
+		this.mpow            = heroStats[2];
+		this.int             = heroStats[3];
+		this.heroCurveArr    = heroCurve;
+		this.curveAtk        = heroCurve[0];
+		this.curveDef        = heroCurve[1];
+		this.curveMpow       = heroCurve[2];
+		this.curveInt        = heroCurve[3];
+		this.heroLearnCurve  = heroLearnCurve;
+		this.image           = image;
+	}
+	function populateHeroesForHire(){
+		heroesForHire = [];
+		knight = new heroForHire(locObj.heroClassKnight.txt, 1, [2,2,0,0], [60,40,0,0],
+								locObj.knightLearnCurve.txt, 'hero-knight.png');
+		monk   = new heroForHire(locObj.heroClassMonk.txt, 1, [0,0,2,2], [45,55,0,0],
+								locObj.monkLearnCurve.txt, 'hero-monk.png');
+		heroesForHire.push(knight);
+		heroesForHire.push(monk);
+		for (hero of heroesForHire){
+			var heroAttributesRandomizer = new WeightedRandom();
+			console.log(heroAttributesRandomizer);
+			heroAttributesRandomizer.addEntry('atk', hero.curveAtk);
+			heroAttributesRandomizer.addEntry('def', hero.curveDef);
+			heroAttributesRandomizer.addEntry('int', hero.curveInt);
+			heroAttributesRandomizer.addEntry('mpow', hero.curveMpow);
+			for (i=0; i<game.buildLevelInn-1;i++){
+				var rndAttrName    = heroAttributesRandomizer.getRandom();
+				hero[rndAttrName]++;
+				hero["level"]++;
+			}
+		}
+		updateHeroAvForHire(0);
+	}
+	
+	function updateHeroAvForHire(heroClassId){
+		console.log("heroClassId is "+heroClassId);
+		document.getElementById("lblClassForHire").innerText    = heroesForHire[heroClassId].heroClassLbl;
+		document.getElementById("lblSpeciality").innerText      = heroesForHire[heroClassId].heroLearnCurve;
+		document.getElementById("imgHeroForHire").src           = 'resources/'+heroesForHire[heroClassId].image;
+		document.getElementById("lblLevelForHire").innerText    = heroesForHire[heroClassId].level;
+		theStats    = locObj.heroStatsAtkLbl.txt  +": " + heroesForHire[heroClassId]["atk"]+"; ";
+		theStats   += locObj.heroStatsDefLbl.txt  +": " + heroesForHire[heroClassId]["def"]+" ";
+		theStats   += "<br>"
+		theStats   += locObj.heroStatsMpowLbl.txt +": " + heroesForHire[heroClassId]["mpow"]+"; ";
+		theStats   += locObj.heroStatsIntLbl.txt  +": " + heroesForHire[heroClassId]["int"]+" ";
+		document.getElementById("lblPrimaryStats").innerHTML    = theStats;
+	}
+	function prevHero(){
+		if (curHeroForHire===0) {
+			curHeroForHire = heroesForHire.length - 1;
+			updateHeroAvForHire(curHeroForHire);
+		} else {
+			curHeroForHire = curHeroForHire - 1;
+			updateHeroAvForHire(curHeroForHire);
+		}
+	}
+	function nextHero(){
+		if (curHeroForHire===heroesForHire.length - 1) {
+			curHeroForHire = 0
+			updateHeroAvForHire(curHeroForHire);
+		} else {
+			curHeroForHire = curHeroForHire + 1;
+			updateHeroAvForHire(curHeroForHire);
+		}
 	}
 	popPage = 0;
 	function checkFirebrigade() {
@@ -5112,25 +5347,24 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		year.innerHTML = "";
 		pop.innerHTML  = "";
 		popPage  = Math.round(game.years.length)/10;
-		//console.log('checkPop '+popPage);
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-10+i] +'</td>';
-				pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[game.years.length-10+i]  +'</td>';
-				//console.log('period is '+game.years[game.years.length-10+i]+' and pop is '+game.pops[game.years.length-10+i]);
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-10+i] +'</span></td>';
+				pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[game.years.length-10+i]  +'</span></td>';
 			}
 			document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabPopulation');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-game.years.length+i] +'</td>';
-					pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[game.years.length-game.years.length+i]  +'</td>';
-					//console.log('period is '+game.years[game.years.length-game.years.length+i]+' and pop is '+game.pops[game.years.length-game.years.length+i]);
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-game.years.length+i] +'</span></td>';
+					pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[game.years.length-game.years.length+i]  +'</span></td>';
 				}
 				document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabPopulation');
 			} else {
 				// nothing to show
@@ -5141,7 +5375,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 				document.getElementById("loadGameButton").disabled = true;
 				showModal(0, '', getAck, alertMsg,  localeStrings[65], '')
 			}
-		}		
+		}
 	}
 	function popAtStart() { 
 		var year = document.getElementById("popStatK");
@@ -5149,25 +5383,24 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		year.innerHTML = "";
 		pop.innerHTML  = "";
 		popPage  = 0;
-		//console.log('popStart '+popPage);
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[i] +'</td>';
-				pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[i]  +'</td>';
-				//console.log('period is '+game.years[i]+' and pop is '+game.pops[i]);
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[i] +'</span></td>';
+				pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[i]  +'</span></td>';
 			}
 			document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabPopulation');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[i] +'</td>';
-					pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[i]  +'</td>';
-					//console.log('period is '+game.years[i]+' and pop is '+game.pops[i]);
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[i] +'</span></td>';
+					pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[i]  +'</span></td>';
 				}
 				document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabPopulation');
 			} else {
 				// TODO show something!
@@ -5185,25 +5418,24 @@ WeightedRandom.prototype.clearEntriesList = function() {
 			popPage = 0;
 		}
 		popPage  = Math.round(popPage*10)/10;
-		//console.log('popPrev is '+popPage);
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[popPage*10+i] +'</td>';
-				pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[popPage*10+i]  +'</td>';
-				//console.log('period is '+game.years[popPage*10+i]+' and pop is '+game.pops[popPage*10+i]);
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[popPage*10+i] +'</span></td>';
+				pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[popPage*10+i]  +'</span></td>';
 			}
 			document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabPopulation');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-game.years.length+i] +'</td>';
-					pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[game.years.length-game.years.length+i]  +'</td>';
-					//console.log('period is '+game.years[game.years.length-game.years.length+i]+' and pop is '+game.pops[game.years.length-game.years.length+i]);
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-game.years.length+i] +'</span></td>';
+					pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[game.years.length-game.years.length+i]  +'</span></td>';
 				}
 				document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabPopulation');
 			} else {
 				// nothing to show
@@ -5221,25 +5453,24 @@ WeightedRandom.prototype.clearEntriesList = function() {
 			popPage  = Math.round(game.years.length)/10-1;
 		}
 		popPage  = Math.round(popPage*10)/10;
-		//console.log('popNext is '+popPage);
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[popPage*10+i] +'</td>';
-				pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[popPage*10+i]  +'</td>';
-				//console.log('period is '+game.years[popPage*10+i]+' and pop is '+game.pops[popPage*10+i]);
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[popPage*10+i] +'</span></td>';
+				pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[popPage*10+i]  +'</span></td>';
 			}
 			document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabPopulation');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-game.years.length+i] +'</td>';
-					pop.innerHTML  = pop.innerHTML  +'<td>'+ game.pops[game.years.length-game.years.length+i]  +'</td>';
-					//console.log('period is '+game.years[game.years.length-game.years.length+i]+' and pop is '+game.pops[game.years.length-game.years.length+i]);
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-game.years.length+i] +'</span></td>';
+					pop.innerHTML  = pop.innerHTML  +'<td><span class="dynamicCells">'+ game.pops[game.years.length-game.years.length+i]  +'</span></td>';
 				}
 				document.getElementById("lblCurrentPopLimit").innerHTML=localeStrings[162].replace("%arg1",game.popLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabPopulation');
 			} else {
 				// nothing to show
@@ -5259,21 +5490,23 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-10+i]    +'</td>';
-				gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[game.years.length-10+i]  +'</td>';
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-10+i]    +'</span></td>';
+				gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[game.years.length-10+i]  +'</span></td>';
 				//console.log('period is '+game.years[game.years.length-10+i]+' and gold is '+game.budgets[game.years.length-10+i]);
 			}
 			document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabGold');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-game.years.length+i]    +'</td>';
-					gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[game.years.length-game.years.length+i]  +'</td>';
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-game.years.length+i]    +'</span></td>';
+					gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[game.years.length-game.years.length+i]  +'</span></td>';
 					//console.log('period is '+game.years[game.years.length-game.years.length+i]+' and gold is '+game.budgets[game.years.length-game.years.length+i]);
 				}
 				document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabGold');
 			} else {
 				// nothing to show
@@ -5295,21 +5528,23 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[i]    +'</td>';
-				gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[i]  +'</td>';
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[i]    +'</span></td>';
+				gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[i]  +'</span></td>';
 				//console.log('period is '+game.years[i]+' and gold is '+game.budgets[i]);
 			}
 			document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabGold');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[i]    +'</td>';
-					gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[i]  +'</td>';
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[i]    +'</span></td>';
+					gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[i]  +'</span></td>';
 					//console.log('period is '+game.years[i]+' and gold is '+game.budgets[i]);
 				}
 				document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabGold');
 			} else {
 				// nothing to show
@@ -5331,21 +5566,21 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[goldPage*10+i]    +'</td>';
-				gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[goldPage*10+i]  +'</td>';
-				//console.log('period is '+game.years[goldPage*10+i]+' and gold is '+game.budgets[goldPage*10+i]);
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[goldPage*10+i]    +'</span></td>';
+				gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[goldPage*10+i]  +'</span></td>';
 			}
 			document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabGold');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-game.years.length+i]    +'</td>';
-					gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[game.years.length-game.years.length+i]  +'</td>';
-					//console.log('period is '+game.years[game.years.length-game.years.length+i]+' and gold is '+game.budgets[game.years.length-game.years.length+i]);
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-game.years.length+i]    +'</span></td>';
+					gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[game.years.length-game.years.length+i]  +'</span></td>';
 				}
 				document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabGold');
 			} else {
 				// nothing to show
@@ -5367,21 +5602,21 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		if (game.years.length > 10) {
 			//select the latest 10
 			for (i=0;i<10;i++) {
-				year.innerHTML = year.innerHTML +'<td>'+ game.years[goldPage*10+i]    +'</td>';
-				gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[goldPage*10+i]  +'</td>';
-				//console.log('period is '+game.years[popPage*10+i]+' and pop is '+game.budgets[goldPage*10+i]);
+				year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[goldPage*10+i]    +'</span></td>';
+				gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[goldPage*10+i]  +'</span></td>';
 			}
 			document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+			dynamicCellsSetStyle();
 			openTab(null, 'tabGold');
 		} else {
 			if (game.years.length > 0) 
 			{
 				for (i=0;i<game.years.length;i++) {
-					year.innerHTML = year.innerHTML +'<td>'+ game.years[game.years.length-game.years.length+i]    +'</td>';
-					gold.innerHTML = gold.innerHTML +'<td>'+ game.budgets[game.years.length-game.years.length+i]  +'</td>';
-					//console.log('period is '+game.years[game.years.length-game.years.length+i]+' and pop is '+game.budgets[game.years.length-game.years.length+i]);
+					year.innerHTML = year.innerHTML +'<td><span class="dynamicCells">'+ game.years[game.years.length-game.years.length+i]    +'</span></td>';
+					gold.innerHTML = gold.innerHTML +'<td><span class="dynamicCells">'+ game.budgets[game.years.length-game.years.length+i]  +'</span></td>';
 				}
 				document.getElementById("lblCurrentGoldLimit").innerHTML=localeStrings[163].replace("%arg1",game.goldLimit());
+				dynamicCellsSetStyle();
 				openTab(null, 'tabGold');
 			} else {
 				// nothing to show
@@ -5394,17 +5629,54 @@ WeightedRandom.prototype.clearEntriesList = function() {
 	function checkSaves() {
 		if (localStorage.getItem('game')!==null) {
 			document.getElementById("loadGameButton").style.visibility = "visible";
+		} else {
+			if (!game.tips.includes("tutorial0-welcome0")){
+				game.tips.push("tutorial0-welcome0");
+				showModal(0, '', getAck, locObj.tutorial0_w0.txt, locObj.okay.txt, '')
+			}
 		}
 	}
-	function changeColorMode() {
-		if (nightMode === 0) {
-			//oldStyle= document.getElementsByTagName('body').style;
+	function dynamicCellsSetStyle() {
+		if (game.nightMode === true){
+			var dynElementsDay = document.getElementsByClassName('dynamicCellsDay');
+			while(dynElementsDay.length) {
+				dynElementsDay[0].className = 'dynamicCellsNight';
+			}
+			var dynElements = document.getElementsByClassName('dynamicCells');
+			while(dynElements.length) {
+				dynElements[0].className = 'dynamicCellsNight';
+			}
+		} else {
+			var dynElementsNight = document.getElementsByClassName('dynamicCellsNight');
+			while(dynElementsNight.length) {
+				dynElementsNight[0].className = 'dynamicCellsDay';
+			}
+			var dynElements = document.getElementsByClassName('dynamicCells');
+			while(dynElements.length) {
+				dynElements[0].className = 'dynamicCellsDay';
+			}
+		}
+	}
+	function enforceColorMode() {
+		if (game.nightMode === true) {
+			//darktheme
+			var treasury_guard_darkmode = new Image;
+			treasury_guard_darkmode.src = 'resources/treasury_guard_night_mode.png'
+			document.getElementById("treasury_guard_div").innerHTML = "";
+			document.getElementById("treasury_guard_div").appendChild(treasury_guard_darkmode);
 			var b = document.getElementsByTagName("body");
-			//b[0].setAttribute("style",oldStyle+"background-color:black");
 			b[0].style.backgroundColor = "black";
 			var divs = document.getElementsByTagName("div");
 			for (var i = 0; i < divs.length; i++){
 				divs[i].style.color = "#404040";
+			}
+			var labels = document.getElementsByTagName("label");
+			for (var i = 0; i < labels.length; i++){
+				labels[i].style.color = "#404040";
+			}
+			var spans = document.getElementsByTagName("span");
+			for (var i = 0; i < spans.length; i++){
+				spans[i].style.color = "#ededed";
 			}
 			var textAreas = document.getElementsByTagName("textarea");
 			for (var i = 0; i < textAreas.length; i++){
@@ -5423,13 +5695,30 @@ WeightedRandom.prototype.clearEntriesList = function() {
 				inputs[i].style.color = "#606060";
 				inputs[i].style.backgroundColor = "#202020";
 			}
-			nightMode = 1;
+
+			document.querySelector(".resource-panel").style.backgroundColor = "black";
+			document.querySelector("#pop_img").setAttribute("src", "resources/pop_light.png");
+
+
+			dynamicCellsSetStyle();
 		} else {
+			var treasury_guard_darkmode = new Image;
+			treasury_guard_darkmode.src = 'resources/knight6.png'
+			document.getElementById("treasury_guard_div").innerHTML = "";
+			document.getElementById("treasury_guard_div").appendChild(treasury_guard_darkmode);
 			var b = document.getElementsByTagName("body");
 			b[0].style.backgroundColor = "white";
 			var divs = document.getElementsByTagName("div");
 			for (var i = 0; i < divs.length; i++){
 				divs[i].style.color = "black";
+			}
+			var labels = document.getElementsByTagName("label");
+			for (var i = 0; i < labels.length; i++){
+				labels[i].style.color = "black";
+			}
+			var spans = document.getElementsByTagName("span");
+			for (var i = 0; i < spans.length; i++){
+				spans[i].style.color = "black";
 			}
 			var textAreas = document.getElementsByTagName("textarea");
 			for (var i = 0; i < textAreas.length; i++){
@@ -5448,8 +5737,22 @@ WeightedRandom.prototype.clearEntriesList = function() {
 				inputs[i].style.color = "black";
 				inputs[i].style.backgroundColor = "white";
 			}
-			
+
+			document.querySelector(".resource-panel").style.backgroundColor = "#f1f1f1";
+			document.querySelector("#pop_img").setAttribute("src", "resources/pop.png");
+
+			dynamicCellsSetStyle();
+		}
+	}
+	function changeColorMode() {
+		if (game.nightMode === false) {
+			nightMode = 1;
+			game.nightMode = true;
+			enforceColorMode();
+		} else {
 			nightMode = 0;
+			game.nightMode = false;
+			enforceColorMode();
 		}
 	}
 	function getAck() {
@@ -5493,7 +5796,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		document.getElementById("tabCity").innerText             = localeStrings[46];
 		//document.getElementById("tabExplore").innerText          = localeStrings[47];
 		document.getElementById("tabSettings").innerText         = localeStrings[48];
-		document.getElementById("tabGarrison").innerText         = localeStrings[49];
+		//document.getElementById("tabGarrison").innerText         = localeStrings[49];
 		document.getElementById("tabBuilding").innerText         = localeStrings[50];
 		document.getElementById("tabAbout").innerText            = localeStrings[51];
 		document.getElementById("tabDiscord").innerText          = localeStrings[52];
@@ -5511,8 +5814,6 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		document.getElementById("lblTabGold").innerText          = localeStrings[164];
 		document.getElementById("btnColorMode").innerText        = localeStrings[70];
 		document.getElementById("lblTabInn").innerText           = localeStrings[181];
-		document.getElementById("selectHeroClass")[0].text       = localeStrings[204][0];
-		document.getElementById("selectHeroClass")[1].text       = localeStrings[204][1];
 		document.getElementById("lblUpkeepSrc").innerText        = localeStrings[279];
 		document.getElementById("selectUpkeepSrc")[0].text       = localeStrings[284];
 		document.getElementById("selectUpkeepSrc")[1].text       = localeStrings[285];
@@ -5523,6 +5824,9 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		document.getElementById("btnTowngate").innerText         = localeStrings[221];
 		document.getElementById("btnLeaveCity").innerText        = localeStrings[222];
 		document.getElementById("btnGenerateMap").innerText      = localeStrings[223];
+
+		document.getElementById("btnAutobattlesList").innerText  = locObj.autobattle_journal_btn.txt;
+
 		document.getElementById("lblOption").innerText           = localeStrings[71];
 		document.getElementById("lblOn").innerText               = localeStrings[72];
 		document.getElementById("lblOff").innerText              = localeStrings[73];
@@ -5532,7 +5836,10 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		document.getElementById("lblMscAll").innerText           = localeStrings[77];
 		document.getElementById("lblMscScr").innerText           = localeStrings[78];
 		document.getElementById("btnToGeneralSettings").innerText= localeStrings[79];
+		
 		document.getElementById("btnToInn").innerText            = localeStrings[79];
+		document.getElementById("btnToInn1").innerText           = localeStrings[79];
+
 		document.getElementById("lblSoundMenu").innerText        = localeStrings[80];
 		document.getElementById("btnSoundSettings").innerText    = localeStrings[81];
 		document.getElementById("lblStnMobileUI").innerText      = localeStrings[82];
@@ -5569,7 +5876,10 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		document.getElementById("btnGoldNext").innerText         = localeStrings[159];
 		document.getElementById("btnPopAtEnd").innerText         = localeStrings[160];
 		document.getElementById("btnGoldAtEnd").innerText        = localeStrings[160];
-        document.getElementById("downloadGame").innerText        = localeStrings[328];
+		document.getElementById("downloadGame").innerText        = localeStrings[328];
+		document.getElementById("lblLevelForHireLbl").innerText  = locObj.heroLvlLbl.txt;
+		populateHeroesForHire();
+		checkSaves();
 		welcomeMsg();
 		updateButtonCaptions();
 		updateHeroStatus();
@@ -5637,6 +5947,46 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		document.getElementById("lblAutocampaignJournal").appendChild(accordionContainerElement);
 	}
 
+
+	function createBattleAccordion() {
+		var accordionContainerElement = document.createElement('div');
+		var accordionHeaderElement    = document.createElement('div');
+		var accordionBodyElement      = document.createElement('div');
+
+		accordionContainerElement.classList.add('accordion-battle', 'active');
+		accordionHeaderElement.classList.add('accordion-battle-header');
+		accordionBodyElement.classList.add('accordion-battle-body');
+
+		game.autocampaignBattlesCounter++;
+
+		let previousListItem = document.querySelectorAll('.accordion-battle');
+
+		previousListItem.forEach(function (item) {
+			if (item.classList.contains('active')) {
+				item.classList.remove('active');
+			}
+		});
+
+		accordionBodyElement.setAttribute('id', 'accordionBattleBody-' + game.autocampaignBattlesCounter);
+		accordionHeaderElement.innerText = locObj.autobattleTitle.txt.replace("%arg1", game.autocampaignBattlesCounter);
+
+		accordionContainerElement.appendChild(accordionHeaderElement);
+		accordionContainerElement.appendChild(accordionBodyElement);
+
+		document.getElementById("lblAutocampaignBattle").appendChild(accordionContainerElement);
+
+	}
+
+
+	function postBattleLog(msgBattleLog) {
+		var id = 'accordionBattleBody-' + game.autocampaignBattlesCounter;
+		var accordionBattleElement = document.getElementById(id);
+		var logStrElement = document.createElement('p');	
+		
+		logStrElement.innerText = msgBattleLog;
+		accordionBattleElement.appendChild(logStrElement);
+	}
+
 	function postJournalLog(msgEventLog) {
 		var id = "accordionBody-" + game.autocampaignCounter;
 		var targetCampaignLogElement = document.getElementById(id);
@@ -5645,7 +5995,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		scrollDown();
 	}
 	function populatePatchnotes() {
-        msg = "version 1.0.327";
+		msg = "version 1.0.327";
 		writeToTextArea(msg);
 		msg = "added a link to download game to play it offline";
 		writeToTextArea(msg);
@@ -6150,6 +6500,7 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		setupNickname();
 		setupEventLogSizeUI();
 		composite();
+		enforceColorMode();
 		updateUI();
 		document.getElementById("console_n_chat").value = document.getElementById("console_n_chat").value+"\r\n"+getTime(0)+": "+localeStrings[12];
 		scrollDown();
@@ -6388,8 +6739,8 @@ WeightedRandom.prototype.clearEntriesList = function() {
 	}
 	function updateResources() {
 		document.getElementById("gold").innerHTML          = game.gold;
-		document.getElementById("gold_bm").innerHTML       = game.gold;
-		document.getElementById("gold_bt").innerHTML       = game.gold;
+		// document.getElementById("gold_bm").innerHTML       = game.gold;
+		// document.getElementById("gold_bt").innerHTML       = game.gold;
 		document.getElementById("pop").innerHTML           = game.pop;
 		document.getElementById("gems").innerHTML          = game.gems;
 		document.getElementById("treasuryGuard").innerHTML = game.treasuryGuard;
@@ -6612,12 +6963,12 @@ WeightedRandom.prototype.clearEntriesList = function() {
 			evt.currentTarget.className += " active";
 		}
 	}
-	// Get the element with id="defaultOpen" and click on it
 	document.getElementById("tabCity").click();
 
-	function accordion(elem){
+	function accordion(elem, targetClass){
 		document.addEventListener('click', function (e) {
-		if (!e.target.matches(elem + ' .accordion-header')) return;
+		var matchStr = elem + ' ' + targetClass;
+		if (!e.target.matches(matchStr)) return;
 		else{
 			if(!e.target.parentElement.classList.contains('active')){         
 				e.target.parentElement.classList.add('active');
@@ -6628,11 +6979,11 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		});
 	}
 
-	accordion('.accordion');
+	accordion('.accordion', '.accordion-header');
+	accordion('.accordion-battle', '.accordion-battle-header');
 
 </script>
 <script async src="dialogue.js"></script>
-<!--<script src="localisation.js"></script>-->
 <!--Google Analytics. Sorry guys and girls, but I need some analytic from the game. Feel free to block it -->
 <!--
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111661515-1"></script>
