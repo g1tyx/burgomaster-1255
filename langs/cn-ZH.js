@@ -43,27 +43,27 @@ localeStrings.push("firemen put end to the fire!");//40
 localeStrings.push("it will burn to ashes!");
 localeStrings.push("shit happens: thieves stole %arg1 gold from your treasury");
 localeStrings.push("You won in a lottery %arg1 gold prize");
-localeStrings.push("Save game");
-localeStrings.push("Load game");//45
-localeStrings.push("City");
-localeStrings.push("Explore");
-localeStrings.push("Settings");
-localeStrings.push("Garrison");
-localeStrings.push("Building");//50
-localeStrings.push("How To Play");
+localeStrings.push("保存游戏");
+localeStrings.push("加载游戏");//45
+localeStrings.push("城市");
+localeStrings.push("探索");
+localeStrings.push("设置");
+localeStrings.push("守备");
+localeStrings.push("建筑");//50
+localeStrings.push("玩法");
 localeStrings.push("Discord");
-localeStrings.push("Put out the fire");
-localeStrings.push("Execute somebody");
+localeStrings.push("灭火");
+localeStrings.push("处决某人");
 localeStrings.push("placeholder");//55
-localeStrings.push("Do you want to place a festival?\nIt would cost to you %arg1 gold!\n");
-localeStrings.push("Festival was placed not so long ago.\nThe effect from festival would be weaken.\n");
-localeStrings.push(["The event item collected!","Your pledge is recorded!"]);
-localeStrings.push(["Your gain because of the festival is %arg1","Your loss because of the festival is %arg1"]);
-localeStrings.push("Okay");//60
-localeStrings.push("You already have a hero!");
-localeStrings.push("Autosave is turned on");
-localeStrings.push("Autosave is turned off");
-localeStrings.push("You are about to build %arg1.\nIf the object is built, you wouldn't be allow to build %arg2.\nAre you sure in your choice?");
+localeStrings.push("你想举办一个节日吗？\n这会花费你 %arg1 黄金!\n");
+localeStrings.push("节日是在不久前举行的。\n节日的效果会减弱。\n");
+localeStrings.push(["事件物品已收集!","你的誓言被记录下来了!"]);
+localeStrings.push(["节日带来的收益是 %arg1","您因节日而蒙受的损失是 %arg1"]);
+localeStrings.push("好的");//60
+localeStrings.push("你已经有一个英雄了!");
+localeStrings.push("自动保存已打开");
+localeStrings.push("自动保存已关闭");
+localeStrings.push("您将要构建%arg1。\n如果建造了它，则将不允许您建造%arg2。\n确定要选择吗？");
 localeStrings.push("Nothing to show yet, come here later.");//65
 localeStrings.push("Settings");
 localeStrings.push("Export Game");
@@ -258,7 +258,7 @@ localeStrings.push("重新生成地图");
 localeStrings.push("你的英雄晋升到下一个级别!");
 localeStrings.push("你想要积极进取的立场(更高的回报，更高的风险)还是谨慎的立场?");//225
 localeStrings.push("好斗！ 想要血液和金钱！");
-localeStrings.push("谨慎。如果你的英雄死了，金子还有什么用?");
+localeStrings.push("谨慎。如果你的英雄死了，黄金还有什么用?");
 localeStrings.push("首先需要在英雄队伍中增加一些兵力!");
 localeStrings.push("你需要一个英雄来做这件事!");
 localeStrings.push("很高兴能和你做生意。我会再见到你的");//230
@@ -269,9 +269,9 @@ localeStrings.push("为了提高您的资金限额，需要对这栋建筑物进
 localeStrings.push("改进这栋建筑物是执行公民生活所必需的。<br>它还增加了税收，降低了出生率和幸福感。<br>如果建造此建筑物，您将无法建造喷泉！");//235
 localeStrings.push("这个建筑和它的改进是需要放置节日。。<br>它还可以提高出生率和幸福感，并减少税收。<br>如果建造这座建筑物，您将无法建造绞刑架！");
 localeStrings.push("为了防止小偷抢劫您的财物，需要对这座建筑物及其进行改进，以节省您的钱。<br>您拥有的藏匿物品等级越高，藏在藏匿物品中的藏身之处就越多。");
-localeStrings.push("要雇佣英雄，需要对这座建筑及其建筑进行改进。<br>您拥有的客栈等级越高，您可以在这里雇佣的经验越丰富的英雄。");
-localeStrings.push("This building and its improvements is needed to hire cavalry units.<br>The higher level of Stable you have, the more experienced troops you could hire there.");
-localeStrings.push("This building and its improvements is needed to hire archery units.<br>The higher level of Archery range you have, the more experienced troops you could hire there.");//240
+localeStrings.push("要雇佣英雄，需要这座建筑及其改进。<br>您拥有的客栈等级越高，您可以在这里雇佣的经验越丰富的英雄。");
+localeStrings.push("要雇佣骑兵部队需要这座建筑及其改进。<br>您拥有的马厩等级越高，您可以在那雇佣更多的经验丰富的部队。");
+localeStrings.push("要雇佣弓箭手，需要对这座建筑及其改进。<br>射箭射程越高，您可以在那雇佣越有经验的部队。");//240
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
@@ -320,25 +320,25 @@ localeStrings.push("国库");//285
 localeStrings.push("城门卷轴");
 localeStrings.push("这个消耗品可以让你从自动战役传送到城市");
 localeStrings.push("四叶草");
-localeStrings.push("This item increases your hero's luck and superstition by 1");
+localeStrings.push("这个物品使你的英雄的运气和迷信增加1");
 localeStrings.push("勇气勋章");//290
-localeStrings.push("This item increases your hero's moral by 1");
+localeStrings.push("此物品使你英雄的道德提高1");
 localeStrings.push("Medal of Courage");
-localeStrings.push("This item increases your hero's moral by 1");
-localeStrings.push("Medal of Honor");
-localeStrings.push("This item increases your hero's moral by 1");//295
-localeStrings.push("Medal of Distinction");
-localeStrings.push("This item increases your hero's moral by 1");
-localeStrings.push("Rabbit's Foot");
-localeStrings.push("This item increases your hero's luck and superstition by 1");
-localeStrings.push("Golden Horseshoe");//300
-localeStrings.push("This item increases your hero's luck and superstition by 1");
-localeStrings.push("Gambler's Lucky Coin");
-localeStrings.push("This item increases your hero's luck and superstition by 1");
-localeStrings.push("Unlucky hourglass");
-localeStrings.push("This item reset any luck bonuses for your hero and opponent's troops");//305
-localeStrings.push("Glass globe");
-localeStrings.push("This item alows your hero to guess next battle result");//almost all times. 70% I guess, would be enough for start
+localeStrings.push("此物品使你英雄的道德提高1");
+localeStrings.push("荣誉勋章");
+localeStrings.push("此物品使你英雄的道德提高1");//295
+localeStrings.push("杰出勋章");
+localeStrings.push("此物品使你英雄的道德提高1");
+localeStrings.push("兔子腿");
+localeStrings.push("此物品使你的英雄的运气和迷信提高1");
+localeStrings.push("黄金马蹄铁");//300
+localeStrings.push("此物品使你的英雄的运气和迷信提高1");
+localeStrings.push("赌徒的幸运硬币");
+localeStrings.push("此物品使你的英雄的运气和迷信提高1");
+localeStrings.push("倒霉的沙漏");
+localeStrings.push("此物品重置你的英雄和对手部队的所有运气加值");//305
+localeStrings.push("玻璃地球仪");
+localeStrings.push("此物品可使您的英雄猜测下一场战斗的结果");//almost all times. 70% I guess, would be enough for start
 localeStrings.push("Brother-sergeant. Mounted melee unit. Hiring cost %arg1. Upkeep cost %arg2");
 localeStrings.push("Turkopol. Mounted ranged unit. Hiring cost %arg1. Upkeep cost %arg2");
 localeStrings.push("Brother-knight. Advanced mounted melee unit. Hiring cost %arg1. Upkeep cost %arg2");//310
