@@ -6,17 +6,17 @@ localeStrings.push("build or upgrade your Treasury");
 localeStrings.push("amount of money is increased");
 localeStrings.push("amount of money is decreased");//5
 localeStrings.push("amount of money is not changed");
-localeStrings.push("population is increased");
-localeStrings.push("population is decreased");
-localeStrings.push("population is not changed");
-localeStrings.push("your city is reached population limit. Build new houses or upgrade existing ones");//10
-localeStrings.push("game saved successfully");
-localeStrings.push("game loaded successfully");
-localeStrings.push("Load game? You will lose any unsaved progress!");
-localeStrings.push("Sorry! There is no save to load from!");
-localeStrings.push("Save game? You will rewrite any save you already have!");//15
-localeStrings.push("Please insert save string");
-localeStrings.push("very long string");
+localeStrings.push("人口增加了");
+localeStrings.push("人口减少了");
+localeStrings.push("人口没有改变");
+localeStrings.push("您所在的城市已达到人口上限。 建造新房屋或升级现有房屋");//10
+localeStrings.push("游戏已成功保存");
+localeStrings.push("游戏已成功加载");
+localeStrings.push("加载游戏？ 您将失去所有未保存的游戏进度！");
+localeStrings.push("对不起！ 没有要加载的存档！");
+localeStrings.push("要保存游戏吗?您将覆盖您已经有的任何保存!");//15
+localeStrings.push("请粘贴进去存档字符串");
+localeStrings.push("很长的字符串");
 localeStrings.push("Do you want to hire a guardsman? He will cost you %arg1 gold and then %arg2 gold per each season!");
 localeStrings.push("You hired a guardsman!");
 localeStrings.push("Not enough gold to do that!");//20
@@ -28,11 +28,11 @@ localeStrings.push("treachery");//25
 localeStrings.push("betrayal");
 localeStrings.push("corruption");
 localeStrings.push("bribery");
-localeStrings.push("graft and theft");
+localeStrings.push("贪污和盗窃");
 localeStrings.push("embezzlement");//30
-localeStrings.push("Yes, in the most bloody way!");
-localeStrings.push("Yes");
-localeStrings.push("No");
+localeStrings.push("是的，以最血腥的方式！");
+localeStrings.push("是");
+localeStrings.push("不");
 localeStrings.push("you executed a citizen for %arg1");
 localeStrings.push("%arg1 is confiscated property of the executed citizen");//35
 localeStrings.push("too few citizens");

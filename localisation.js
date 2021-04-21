@@ -23,6 +23,9 @@ function loadStartLocale(){
 				language = getBrowserLanguage();
 			}
 		}
+		if (language.indexOf('cn')!==-1) {
+			language = 'cn-ZH';
+		}
 		if (language.indexOf('en')!==-1) {
 			language = 'en-US';
 		}
@@ -38,12 +41,9 @@ function loadStartLocale(){
 		if (language.indexOf('fi')!==-1) {
 			language = 'fi-FI';
 		}
-		if (language.indexOf('cn')!==-1) {
-			language = 'cn';
-		}
-		locales = ['cn','en-US','ru-RU','de-DE','eo','fr-FR','fi-FI'];
-		default_locale = 'cn';
-		if (checkValue(language, locales)===1) {
+		locales = ['en-US','ru-RU','de-DE','eo','fr-FR','fi-FI','cn-ZH'];
+		default_locale = 'cn-ZH';
+		if (checkValue(language, locales)===6) {
 			loadLocale(language);
 		} else {
 			loadLocale(default_locale);
