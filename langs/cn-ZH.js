@@ -175,7 +175,7 @@ localeStrings.push("inn");//140
 localeStrings.push("gallows");
 localeStrings.push("fountain");
 localeStrings.push("treasury");
-localeStrings.push("gold");
+localeStrings.push("黄金");
 localeStrings.push("population");//145
 localeStrings.push("archery range");
 localeStrings.push("placeholder");
@@ -220,24 +220,24 @@ localeStrings.push("morale");//185
 localeStrings.push("the hero found some money: ");
 localeStrings.push("Intelligence");
 localeStrings.push("placeholder");
-localeStrings.push("Level");
-localeStrings.push("Attack");//190
-localeStrings.push("Defense");
-localeStrings.push("Manapoints");
-localeStrings.push("Spellpower");
-localeStrings.push("Experience");
-localeStrings.push("Current experience");//195
-localeStrings.push("Experience required for next level");
-localeStrings.push("Alignment");
+localeStrings.push("等级");
+localeStrings.push("攻击");//190
+localeStrings.push("防御");
+localeStrings.push("法力点");
+localeStrings.push("法术强度");
+localeStrings.push("经验值");
+localeStrings.push("当前经验值");//195
+localeStrings.push("下一级所需的经验");
+localeStrings.push("对齐");
 localeStrings.push("Lawful");
 localeStrings.push("Neutral");
 localeStrings.push("Chaotic");//200
 localeStrings.push("Good");
 localeStrings.push("Neutral");
 localeStrings.push("Evil");
-localeStrings.push(["Knight", "Monk"]);
+localeStrings.push(["骑士", "僧侣"]);
 localeStrings.push("Class");//205
-localeStrings.push("Hero now is ");
+localeStrings.push("英雄现在 ");
 localeStrings.push(" in town");
 localeStrings.push(" in autocampaign");
 localeStrings.push(" in manualcampaign");
@@ -245,31 +245,31 @@ localeStrings.push(["eating", "drinking","gambling","training","fistfighting","r
 localeStrings.push(["marching back","marching","killing pagans", "converting pagans","making a camp","looting dead pagans"]);
 localeStrings.push(["marching", "making a camp","looting"]);
 localeStrings.push("Days from the city");
-localeStrings.push("From the city");
-localeStrings.push("To the city");//215
-localeStrings.push("Gold in hero's purse");
-localeStrings.push("Dismiss hero");
-localeStrings.push("Send hero to autocampaign");
+localeStrings.push("从城市");
+localeStrings.push("去城市");//215
+localeStrings.push("英雄钱包里的金币");
+localeStrings.push("解雇英雄");
+localeStrings.push("派遣英雄到自动战役");
 localeStrings.push("Withdraw the hero");
-localeStrings.push("Open journal");//220
-localeStrings.push("Use towngate scroll");
-localeStrings.push("Go to the adventure map");
-localeStrings.push("Regenerate map");
-localeStrings.push("Your hero got promoted to the next level!");
-localeStrings.push("Do you want aggressive stance (higher reward, higher risk) or cautious one?");//225
-localeStrings.push("Aggressive! Want blood and money!");
-localeStrings.push("Cautious. What good of gold if your hero is dead?");
-localeStrings.push("You need to add some troops to hero's squad first!");
-localeStrings.push("You need a hero to do that!");
-localeStrings.push("It is a pleasure to have a business with you. I will see you again");//230
-localeStrings.push("Congratulations with your purchase! you made good choice!");
-localeStrings.push("This building is needed for defending the city from intruders.");
-localeStrings.push("This building and its improvements is needed to raise your population limit.");
-localeStrings.push("This building and its improvements is needed to raise your money limit.<br>This building allows you to hire treasury guards.<br>They are needed to minimize your chances to be robbed.");
-localeStrings.push("This building and its improvements is needed to execute your citizens.<br>It is also increase taxes and decrease birthrate and happiness.<br>If you build this building, you will not be able to build the Fountain!");//235
-localeStrings.push("This building and its improvements is needed to place festivals.<br>It is also increase birthrate and happiness and decrease taxes.<br>If you build this building, you will not be able to build the Gallows!");
-localeStrings.push("This building and its improvements is needed to save your money from thieves, in case the thieves rob your treasury.<br>The higher level of Stash you have, the more you could hide in the Stash.");
-localeStrings.push("This building and its improvements is needed to hire heroes.<br>The higher level of Inn you have, the more experienced hero you could hire there.");
+localeStrings.push("打开日记");//220
+localeStrings.push("使用城门卷轴");
+localeStrings.push("前往冒险地图");
+localeStrings.push("重新生成地图");
+localeStrings.push("你的英雄晋升到下一个级别!");
+localeStrings.push("你想要积极进取的立场(更高的回报，更高的风险)还是谨慎的立场?");//225
+localeStrings.push("好斗！ 想要血液和金钱！");
+localeStrings.push("谨慎。如果你的英雄死了，金子还有什么用?");
+localeStrings.push("首先需要在英雄队伍中增加一些兵力!");
+localeStrings.push("你需要一个英雄来做这件事!");
+localeStrings.push("很高兴能和你做生意。我会再见到你的");//230
+localeStrings.push("恭喜您购买！ 您做出了不错的选择！");
+localeStrings.push("这座建筑是防御入侵者防御城市所必需的。");
+localeStrings.push("为了提高您的人口上限，需要对这座建筑物进行改进。");
+localeStrings.push("为了提高您的资金限额，需要对这栋建筑物进行改进。<br>该建筑物允许您雇用金库管理员。<br>需要使用它们来最大程度地减少被抢的几率。");
+localeStrings.push("改进这栋建筑物是执行公民生活所必需的。<br>它还增加了税收，降低了出生率和幸福感。<br>如果建造此建筑物，您将无法建造喷泉！");//235
+localeStrings.push("这个建筑和它的改进是需要放置节日。。<br>它还可以提高出生率和幸福感，并减少税收。<br>如果建造这座建筑物，您将无法建造绞刑架！");
+localeStrings.push("为了防止小偷抢劫您的财物，需要对这座建筑物及其进行改进，以节省您的钱。<br>您拥有的藏匿物品等级越高，藏在藏匿物品中的藏身之处就越多。");
+localeStrings.push("要雇佣英雄，需要对这座建筑及其建筑进行改进。<br>您拥有的客栈等级越高，您可以在这里雇佣的经验越丰富的英雄。");
 localeStrings.push("This building and its improvements is needed to hire cavalry units.<br>The higher level of Stable you have, the more experienced troops you could hire there.");
 localeStrings.push("This building and its improvements is needed to hire archery units.<br>The higher level of Archery range you have, the more experienced troops you could hire there.");//240
 localeStrings.push("placeholder");
@@ -285,43 +285,43 @@ localeStrings.push("placeholder");//250
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
-localeStrings.push("Direction: ");
-localeStrings.push("The hero is just behind the city now!");//255
-localeStrings.push("You don't have a Towngate scroll!");
-localeStrings.push("First, head the hero to the town!");
+localeStrings.push("方向: ");
+localeStrings.push("英雄现在就在城市后面！");//255
+localeStrings.push("你没有城门卷轴!");
+localeStrings.push("首先，带领英雄去城镇!");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
-localeStrings.push("The blackmarket's merchant offers these goods for sale!");//260
-localeStrings.push("price ");
-localeStrings.push("Buy selected");
-localeStrings.push("The blackmarket's merchant could buy your goods.");
-localeStrings.push("Sell selected");
+localeStrings.push("黑市商人把这些东西拿来卖!");//260
+localeStrings.push("价格 ");
+localeStrings.push("购买已选");
+localeStrings.push("黑市商人可能会买你的货。");
+localeStrings.push("出售已选");
 localeStrings.push("placeholder");//265
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
-localeStrings.push("Fire brigade");//270
-localeStrings.push("The fire service is");
-localeStrings.push("on duty");
-localeStrings.push("off duty");
-localeStrings.push("The price of sustain of the service is");
-localeStrings.push("%arg1% of fire extinguished");//275
+localeStrings.push("消防队");//270
+localeStrings.push("消防部门");
+localeStrings.push("上班");
+localeStrings.push("下班");
+localeStrings.push("服务的持续价格是");
+localeStrings.push("%arg1% 火已熄灭");//275
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
 localeStrings.push("placeholder");
-localeStrings.push("The primary source of payments to the hero's troops is ");
-localeStrings.push("You can't afford upkeep your sergeants. they are dismissed");//280
-localeStrings.push("You can't afford upkeep your turkopols. they are dismissed");
-localeStrings.push("You can't afford upkeep your knights. they are dismissed");
-localeStrings.push("You can't afford upkeep your fireguard team. they are dismissed");
-localeStrings.push("the hero's purse");
-localeStrings.push("the treasury");//285
-localeStrings.push("Towngate scroll");
-localeStrings.push("This consumable item allows you to teleport to city from an autocampaign");
-localeStrings.push("Four-Leaf Clover");
+localeStrings.push("支付给英雄部队的主要资金来源是 ");
+localeStrings.push("你养不起你的中士。他们被解雇了");//280
+localeStrings.push("你养不起你的枪兵。他们被解雇了");
+localeStrings.push("你养不起你的骑士。他们被解雇了");
+localeStrings.push("你养不起你的消防队。他们被解雇了");
+localeStrings.push("英雄的钱包");
+localeStrings.push("国库");//285
+localeStrings.push("城门卷轴");
+localeStrings.push("这个消耗品可以让你从自动战役传送到城市");
+localeStrings.push("四叶草");
 localeStrings.push("This item increases your hero's luck and superstition by 1");
-localeStrings.push("Medal of Valor");//290
+localeStrings.push("勇气勋章");//290
 localeStrings.push("This item increases your hero's moral by 1");
 localeStrings.push("Medal of Courage");
 localeStrings.push("This item increases your hero's moral by 1");
@@ -420,7 +420,7 @@ locObj.okay = {"txt":"确定", "loc":"Mostly used in information dialogues"}
 locObj.tutorial0_w0 = {"txt":"您的叔叔，条顿骑士团的地主，\n要您在异教徒的边境上建一座城市。\n您已经找到了一个适合的地方，那里有丘陵，河流，森林。\n您的农民已经清理了这个地方并准备建造", "loc":"tutorial0_w0"};
 locObj.tutorial1_pop0 = {"txt":"指挥官先生，您需要盖房子以保持人口增长", "loc":"tutorial0_w0"};
 
-locObj.unit_sergeants = {"txt": "Sergeants", "loc": "Autbattle log, player unit"};
+locObj.unit_sergeants = {"txt": "军士", "loc": "Autbattle log, player unit"};
 locObj.unit_turkopols = {"txt": "Turkopols", "loc": "Autbattle log, player unit"};
 locObj.unit_knights = {"txt": "Brother-knights", "loc": "Autbattle log, player unit"};
 
@@ -430,36 +430,36 @@ locObj.unit_merc_swordman = {"txt": "佣兵剑客", "loc": "Autbattle log, highl
 locObj.unit_merc_spearman = {"txt": "佣兵矛兵", "loc": "Autbattle log, highlevel enemy unit"};
 
 locObj.autobattle_journal_btn = {"txt": "战斗日记", "loc": "Inn window. Battle report by round moves"};
-locObj.autobattle_journal_log_start = {"txt": "Round started", "loc": "Start round title"};
-locObj.autobattle_journal_log_end = {"txt": "Round ended", "loc": "End round title"};
+locObj.autobattle_journal_log_start = {"txt": "回合开始", "loc": "Start round title"};
+locObj.autobattle_journal_log_end = {"txt": "回合结束", "loc": "End round title"};
 locObj.autobattle_journal_log_dmg = {"txt": "%arg1 squad does %arg2 dmg to %arg3.", "loc": "Autobattle dmg log"};
 locObj.autobattle_journal_log_dead = {"txt": "%arg1 %arg2 is dead.", "loc": "Autobattle dead log"};
 locObj.autobattle_journal_log_destroyed = {"txt": "%arg1 squad is destroyed.", "loc": "Autobattle destroyed squad log"};
 
-locObj.advmap = {"txt":"To move your hero use arrow keys\nIf you play with sensor input, please turn on Mobile UI in Settings", "loc":"when first visiting adventure map"};
-locObj.plague_turk = {"txt":"On the edge: your turkopol spotted a plague person and shot him. The corpse was burned afterwards", "loc":"Random event. Plague. A turkopol prevents plague in the city"};
+locObj.advmap = {"txt":"要移动英雄，请使用箭头键\n如果您使用传感器输入进行游戏，请在“设置”中打开“移动用户界面”", "loc":"when first visiting adventure map"};
+locObj.plague_turk = {"txt":"在边缘：您的土库波尔发现一个瘟疫患者并开枪射击了他。 尸体随后被烧毁", "loc":"Random event. Plague. A turkopol prevents plague in the city"};
 locObj.plague_army = {"txt":"shit happens: the plague outbreak was stopped by your garrison, but killed %arg1 of your garrisoned troops", "loc":"Your army prevents plague in the city. Some soldiers are dead now"};
 locObj.plague = {"txt":"shit happens: the plague killed %arg1 citizens", "loc":"default plague case + case where army failed to prevent outbreak"};
 locObj.city_chest_gold = {"txt":"You found %arg1 gold in a chest!", "loc":"Random event. Opened a short-living chest in city screen"};
-locObj.blackmarket_dstr = {"txt":"A tall, fat-belly green goblin, who named itself Elbenkonig,\n  offered you a variety of magic artifacts.\nYou, as a true Christian, a brother of Teutonic order, were offended by it.\nThe first your intention was to kill the goblin and to burn the market.\nOn the other hand, magical artifacts could prove helpful in this world.\nWhat will you do?", "loc":"This dialogue happens every time you first visit blackmarket on the newly generated map"};
-locObj.blackmarket_dstr_brn = {"txt":"Kill the goblin and burn the blackmarket!", "loc":"Destroying the blackmarket"};
+locObj.blackmarket_dstr = {"txt":"一个高个子，肥胖的绿色小妖精，以自己的名字Elbenkonig命名，\n为您提供了各种魔术制品。\n您，作为条顿骑士团的兄弟，真正的基督徒，被它冒犯了。\n您的第一个意图是 杀死妖精并烧毁市场。\n另一方面，神奇的手工艺品在这个世界上可能会有所帮助。\n您会怎么做？", "loc":"This dialogue happens every time you first visit blackmarket on the newly generated map"};
+locObj.blackmarket_dstr_brn = {"txt":"杀死妖精，烧毁黑市！", "loc":"Destroying the blackmarket"};
 locObj.blackmarket_dstr_kp = {"txt":"Start trade", "loc":"Keeping the blackmarket"};
-locObj.borderCollide = {"txt":"You hit an invisible border. You couldn't pass any further", "loc":"adventure map. collision with border"};
+locObj.borderCollide = {"txt":"您碰到了一个看不见的边界。 你再也不能通过了", "loc":"adventure map. collision with border"};
 
-locObj.campaignTitle = {"txt":"Campaign-%arg1","loc":"Autocampaign accordion title"};
-locObj.autobattleTitle = {"txt": "Battle-%arg1", "loc": "Autobattle log title"};
+locObj.campaignTitle = {"txt":"战役-%arg1","loc":"Autocampaign accordion title"};
+locObj.autobattleTitle = {"txt": "战斗-%arg1", "loc": "Autobattle log title"};
 
-locObj.upgCostSidebar = {"txt":"Upgrade to %arg1 level costs %arg2 gold", "loc":"Shows under the building description on the left sidebar for upgrades"};
-locObj.bldCostSidebar = {"txt":"Building costs %arg2 gold", "loc":"Shows under the building description on the left sidebar for initial building"};
+locObj.upgCostSidebar = {"txt":"升级到 %arg1 级成本为 %arg2 黄金", "loc":"Shows under the building description on the left sidebar for upgrades"};
+locObj.bldCostSidebar = {"txt":"建造成本 %arg2 黄金", "loc":"Shows under the building description on the left sidebar for initial building"};
 
-locObj.knightLearnCurve = {"txt":"Has high chance to increase ATK when level up", "loc":"short description of the class in inn"};
-locObj.monkLearnCurve = {"txt":"Has high chance to increase DEF when level up", "loc":"short description of the class in inn"};
-locObj.heroClassKnight = {"txt":"Knight", "loc":"The inn when we are hiring. Hero class"};
-locObj.heroClassMonk = {"txt":"Monk", "loc":"The inn when we are hiring. Hero class"};
+locObj.knightLearnCurve = {"txt":"升级时有很高的几率增加攻击", "loc":"short description of the class in inn"};
+locObj.monkLearnCurve = {"txt":"升级时有很高的几率增加防御", "loc":"short description of the class in inn"};
+locObj.heroClassKnight = {"txt":"骑士", "loc":"The inn when we are hiring. Hero class"};
+locObj.heroClassMonk = {"txt":"僧侣", "loc":"The inn when we are hiring. Hero class"};
 
-locObj.heroLvlLbl = {"txt":"level", "loc":"The inn when we are hiring. Level"};
-locObj.heroStatsLbl = {"txt":"Stats:", "loc":"The inn when we are hiring. Stats"};
-locObj.heroStatsAtkLbl = {"txt":"Attack", "loc":"The inn when we are hiring. Stats. Attack"};
-locObj.heroStatsDefLbl = {"txt":"Defence", "loc":"The inn when we are hiring. Stats. Defence"};
-locObj.heroStatsMpowLbl = {"txt":"Magic power", "loc":"The inn when we are hiring. Stats. Magic power"};
-locObj.heroStatsIntLbl = {"txt":"Intelligence", "loc":"The inn when we are hiring. Stats. Intelligence"};
+locObj.heroLvlLbl = {"txt":"等级", "loc":"The inn when we are hiring. Level"};
+locObj.heroStatsLbl = {"txt":"属性:", "loc":"The inn when we are hiring. Stats"};
+locObj.heroStatsAtkLbl = {"txt":"攻击", "loc":"The inn when we are hiring. Stats. Attack"};
+locObj.heroStatsDefLbl = {"txt":"防御", "loc":"The inn when we are hiring. Stats. Defence"};
+locObj.heroStatsMpowLbl = {"txt":"魔力", "loc":"The inn when we are hiring. Stats. Magic power"};
+locObj.heroStatsIntLbl = {"txt":"智力", "loc":"The inn when we are hiring. Stats. Intelligence"};
