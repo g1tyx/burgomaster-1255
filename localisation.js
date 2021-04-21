@@ -38,8 +38,11 @@ function loadStartLocale(){
 		if (language.indexOf('fi')!==-1) {
 			language = 'fi-FI';
 		}
-		locales = ['en-US','ru-RU','de-DE','eo','fr-FR','fi-FI'];
-		default_locale = 'en-US';
+		if (language.indexOf('cn')!==-1) {
+			language = 'cn';
+		}
+		locales = ['en-US','ru-RU','de-DE','eo','fr-FR','fi-FI','cn'];
+		default_locale = 'cn';
 		if (checkValue(language, locales)===1) {
 			loadLocale(language);
 		} else {

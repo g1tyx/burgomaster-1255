@@ -346,11 +346,12 @@
 		<div id="Settings" class="tabcontent">
 			<h3><div id="labelSettings">Settings</div></h3>
 			<select id="selectLng" size="1" onchange="reloadLang()">
-				<option id="optionLngEn" selected value="en-US">English</option>
+				<option id="optionLngEn" value="en-US">English</option>
 				<option id="optionLngRu"          value="ru-RU">Русский</option>
 				<option id="optionLngGe"          value="de-DE">Deutsch</option>
 				<option id="optionLngEo"          value="eo">Esperanto</option>
 				<option id="optionLngFr"          value="fr-FR">Français</option>
+				<option id="optionLngEn" selected value="cn">中文</option>
 			</select>
 			<table>
 			<tr>
@@ -5788,6 +5789,9 @@ WeightedRandom.prototype.clearEntriesList = function() {
 		}
 		if (returnLanguage==='fi-FI') {
 			document.getElementById("selectLng").selectedIndex=5;
+		}
+		if (returnLanguage==='cn') {
+			document.getElementById("selectLng").selectedIndex=6;
 		}
 		document.getElementById("buttonPutOutFire").innerText    = localeStrings[53];
 		document.getElementById("buttonDeathPenalty").innerText  = localeStrings[54];
