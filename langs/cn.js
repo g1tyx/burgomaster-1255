@@ -415,21 +415,21 @@ locObj = {};
 locObj.welcome0 = {"txt":"Hello player in this incremental game!", "loc":"Once game initted, those strings are put to the gamelog"};
 locObj.welcome1 = {"txt":"Your task is simple - manage the city as mayor of the city!", "loc":"same"};
 locObj.welcome2 = {"txt":"Citizen will pay taxes each season (30 secs) and population will grow each season", "loc":"same"};
-locObj.okay = {"txt":"Okay", "loc":"Mostly used in information dialogues"}
+locObj.okay = {"txt":"确定", "loc":"Mostly used in information dialogues"}
 
-locObj.tutorial0_w0 = {"txt":"Your uncle, the landmaster of Teutonic order,\nsent you to build a city on the pagan frontier.\nYou have found a suituable place with a hill, river, forest.\nYour peasants already cleared the place and ready for building", "loc":"tutorial0_w0"};
-locObj.tutorial1_pop0 = {"txt":"Sir Commander, you need to build houses to keep your population growing", "loc":"tutorial0_w0"};
+locObj.tutorial0_w0 = {"txt":"您的叔叔，条顿骑士团的地主，\n要您在异教徒的边境上建一座城市。\n您已经找到了一个适合的地方，那里有丘陵，河流，森林。\n您的农民已经清理了这个地方并准备建造", "loc":"tutorial0_w0"};
+locObj.tutorial1_pop0 = {"txt":"指挥官先生，您需要盖房子以保持人口增长", "loc":"tutorial0_w0"};
 
 locObj.unit_sergeants = {"txt": "Sergeants", "loc": "Autbattle log, player unit"};
 locObj.unit_turkopols = {"txt": "Turkopols", "loc": "Autbattle log, player unit"};
 locObj.unit_knights = {"txt": "Brother-knights", "loc": "Autbattle log, player unit"};
 
-locObj.unit_bandit = {"txt": "Bandits", "loc": "Autbattle log, enemy unit"};
-locObj.unit_bandit_archer = {"txt": "Bandits archers", "loc": "Autbattle log, enemy unit"};
-locObj.unit_merc_swordman = {"txt": "Mercenary swordman", "loc": "Autbattle log, highlevel enemy unit"};
-locObj.unit_merc_spearman = {"txt": "Mercenary spearman", "loc": "Autbattle log, highlevel enemy unit"};
+locObj.unit_bandit = {"txt": "强盗", "loc": "Autbattle log, enemy unit"};
+locObj.unit_bandit_archer = {"txt": "土匪弓箭手", "loc": "Autbattle log, enemy unit"};
+locObj.unit_merc_swordman = {"txt": "佣兵剑客", "loc": "Autbattle log, highlevel enemy unit"};
+locObj.unit_merc_spearman = {"txt": "佣兵矛兵", "loc": "Autbattle log, highlevel enemy unit"};
 
-locObj.autobattle_journal_btn = {"txt": "Battle journal", "loc": "Inn window. Battle report by round moves"};
+locObj.autobattle_journal_btn = {"txt": "战斗日记", "loc": "Inn window. Battle report by round moves"};
 locObj.autobattle_journal_log_start = {"txt": "Round started", "loc": "Start round title"};
 locObj.autobattle_journal_log_end = {"txt": "Round ended", "loc": "End round title"};
 locObj.autobattle_journal_log_dmg = {"txt": "%arg1 squad does %arg2 dmg to %arg3.", "loc": "Autobattle dmg log"};

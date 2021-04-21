@@ -41,7 +41,7 @@ function loadStartLocale(){
 		if (language.indexOf('cn')!==-1) {
 			language = 'cn';
 		}
-		locales = ['en-US','ru-RU','de-DE','eo','fr-FR','fi-FI','cn'];
+		locales = ['cn','en-US','ru-RU','de-DE','eo','fr-FR','fi-FI'];
 		default_locale = 'cn';
 		if (checkValue(language, locales)===1) {
 			loadLocale(language);
