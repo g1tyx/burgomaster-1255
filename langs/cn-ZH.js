@@ -241,16 +241,16 @@ localeStrings.push("英雄现在 ");
 localeStrings.push(" 在城里");
 localeStrings.push(" 在自动战役中");
 localeStrings.push(" 在手动战役中");
-localeStrings.push(["eating", "drinking","gambling","training","fistfighting","resting"]);//210
-localeStrings.push(["marching back","marching","killing pagans", "converting pagans","making a camp","looting dead pagans"]);
-localeStrings.push(["marching", "making a camp","looting"]);
-localeStrings.push("Days from the city");
-localeStrings.push("从城市");
-localeStrings.push("去城市");//215
+localeStrings.push(["吃", "喝","赌","训练","斗殴","休息"]);//210
+localeStrings.push(["向后行进","行军","杀死异教徒", "皈依异教徒","安营扎寨","掠夺死去的异教徒"]);
+localeStrings.push(["行军", "设立营地","掠夺"]);
+localeStrings.push("离开城市天数");
+localeStrings.push("从城市出发");
+localeStrings.push("前往城市");//215
 localeStrings.push("英雄钱包里的金币");
 localeStrings.push("解雇英雄");
 localeStrings.push("派遣英雄到自动战役");
-localeStrings.push("Withdraw the hero");
+localeStrings.push("撤回英雄");
 localeStrings.push("打开日记");//220
 localeStrings.push("使用城门卷轴");
 localeStrings.push("前往冒险地图");
