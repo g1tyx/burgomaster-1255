@@ -421,8 +421,8 @@ locObj.tutorial0_w0 = {"txt":"您的叔叔，条顿骑士团的地主，\n要您
 locObj.tutorial1_pop0 = {"txt":"指挥官先生，您需要盖房子以保持人口增长", "loc":"tutorial0_w0"};
 
 locObj.unit_sergeants = {"txt": "军士", "loc": "Autbattle log, player unit"};
-locObj.unit_turkopols = {"txt": "Turkopols", "loc": "Autbattle log, player unit"};
-locObj.unit_knights = {"txt": "Brother-knights", "loc": "Autbattle log, player unit"};
+locObj.unit_turkopols = {"txt": "射手", "loc": "Autbattle log, player unit"};
+locObj.unit_knights = {"txt": "兄弟骑士", "loc": "Autbattle log, player unit"};
 
 locObj.unit_bandit = {"txt": "强盗", "loc": "Autbattle log, enemy unit"};
 locObj.unit_bandit_archer = {"txt": "土匪弓箭手", "loc": "Autbattle log, enemy unit"};
@@ -432,18 +432,18 @@ locObj.unit_merc_spearman = {"txt": "佣兵矛兵", "loc": "Autbattle log, highl
 locObj.autobattle_journal_btn = {"txt": "战斗日记", "loc": "Inn window. Battle report by round moves"};
 locObj.autobattle_journal_log_start = {"txt": "回合开始", "loc": "Start round title"};
 locObj.autobattle_journal_log_end = {"txt": "回合结束", "loc": "End round title"};
-locObj.autobattle_journal_log_dmg = {"txt": "%arg1 squad does %arg2 dmg to %arg3.", "loc": "Autobattle dmg log"};
-locObj.autobattle_journal_log_dead = {"txt": "%arg1 %arg2 is dead.", "loc": "Autobattle dead log"};
-locObj.autobattle_journal_log_destroyed = {"txt": "%arg1 squad is destroyed.", "loc": "Autobattle destroyed squad log"};
+locObj.autobattle_journal_log_dmg = {"txt": "%arg1 小队造成 %arg2 伤害给 %arg3.", "loc": "Autobattle dmg log"};
+locObj.autobattle_journal_log_dead = {"txt": "%arg1 %arg2 死掉了.", "loc": "Autobattle dead log"};
+locObj.autobattle_journal_log_destroyed = {"txt": "%arg1 团灭了.", "loc": "Autobattle destroyed squad log"};
 
 locObj.advmap = {"txt":"要移动英雄，请使用箭头键\n如果您使用传感器输入进行游戏，请在“设置”中打开“移动用户界面”", "loc":"when first visiting adventure map"};
 locObj.plague_turk = {"txt":"在边缘：您的射手发现一个瘟疫患者并开枪射击了他。 尸体随后被烧毁", "loc":"Random event. Plague. A turkopol prevents plague in the city"};
-locObj.plague_army = {"txt":"shit happens: the plague outbreak was stopped by your garrison, but killed %arg1 of your garrisoned troops", "loc":"Your army prevents plague in the city. Some soldiers are dead now"};
+locObj.plague_army = {"txt":"糟糕的事情发生了:瘟疫爆发被你的驻军阻止了，但是杀死了你 %arg1 的驻军", "loc":"Your army prevents plague in the city. Some soldiers are dead now"};
 locObj.plague = {"txt":"糟糕的事情发生了：瘟疫杀死了 %arg1 个市民", "loc":"default plague case + case where army failed to prevent outbreak"};
 locObj.city_chest_gold = {"txt":"你从宝箱里面发现了 %arg1 黄金!", "loc":"Random event. Opened a short-living chest in city screen"};
 locObj.blackmarket_dstr = {"txt":"一个高个子，肥胖的绿色小妖精，以自己的名字Elbenkonig命名，\n为您提供了各种魔术制品。\n您，作为条顿骑士团的兄弟，真正的基督徒，被它冒犯了。\n您的第一个意图是 杀死妖精并烧毁市场。\n另一方面，神奇的手工艺品在这个世界上可能会有所帮助。\n您会怎么做？", "loc":"This dialogue happens every time you first visit blackmarket on the newly generated map"};
 locObj.blackmarket_dstr_brn = {"txt":"杀死妖精，烧毁黑市！", "loc":"Destroying the blackmarket"};
-locObj.blackmarket_dstr_kp = {"txt":"Start trade", "loc":"Keeping the blackmarket"};
+locObj.blackmarket_dstr_kp = {"txt":"开始贸易", "loc":"Keeping the blackmarket"};
 locObj.borderCollide = {"txt":"您碰到了一个看不见的边界。 你再也不能通过了", "loc":"adventure map. collision with border"};
 
 locObj.campaignTitle = {"txt":"战役-%arg1","loc":"Autocampaign accordion title"};
